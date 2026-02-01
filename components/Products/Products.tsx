@@ -1,9 +1,7 @@
-// 'use client';
-
 import { Product } from './Product/Product';
 import React from 'react';
 
-import { getProducts } from '../../services/prod';
+// import { getProducts } from '../../services/prod';
 import { prisma } from '../../prisma/prisma-client';
 
 export const Products = async () => {
@@ -14,7 +12,7 @@ export const Products = async () => {
 
     // console.log(products);
 
-    const products = await prisma.product.findMany();
+    const products = await prisma.product.findMany({});
 
     return (
         <>
@@ -25,7 +23,6 @@ export const Products = async () => {
                         title={product.title}
                         description={product.description}
                         imageUrl={product.imageUrl}
-                        price={product.price}
                         id={product.id}
                     />
                 ))}

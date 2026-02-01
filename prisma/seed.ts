@@ -1,83 +1,289 @@
-import { categorys, filters, ingredients, sizesProduct, typesProduct } from './constans';
+import { categories, product, ingredients, filters } from './constans';
 import { prisma } from './prisma-client';
 
-async function up() {
+async function seed() {
     await prisma.category.createMany({
-        data: categorys,
+        data: categories,
     });
+
+    await prisma.filter.createMany({
+        data: filters,
+    });
+
     await prisma.user.createMany({
         data: [
-            { id: 1, name: 'Nikita', surname: 'Pashenko', role: 'USER' },
-            { id: 2, name: 'Andrey', surname: 'Nikiten', role: 'USER' },
-            { id: 3, name: 'Pasha', surname: 'Litakov', role: 'USER' },
+            { name: 'Nikita', surname: 'Pashenko', patronymic: null, role: 'USER' },
+            { name: 'Andrey', surname: 'Nikiten', patronymic: null, role: 'USER' },
+            { name: 'Pasha', surname: 'Litakov', patronymic: null, role: 'USER' },
+            { name: 'Admin', surname: 'Adminov', patronymic: null, role: 'ADMIN' },
         ],
     });
 
     await prisma.userBasket.createMany({
-        data: [
-            { id: 1, userId: 1 },
-            { id: 2, userId: 2 },
-            { id: 3, userId: 3 },
-        ],
+        data: [{ userId: 1 }, { userId: 2 }, { userId: 3 }, { userId: 4 }],
     });
 
     await prisma.product.createMany({
+        data: product,
+    });
+
+    await prisma.sizeOption.createMany({
         data: [
-            {
-                id: 1,
-                title: 'Масала',
-                description:
-                    'Пряные новости: у нас новинка с индийскими мотивами! В ней сочный цыпленок, лук, помидоры, перец, соусы альфредо и масала',
-                imageUrl:
-                    'https://media.dodostatic.net/image/r:292x292/019bcbc9b40370a4b47c6298dcac292a.avif',
-                price: 389,
-                rating: 4,
-                categoryId: 1,
-            },
-            {
-                id: 2,
-                title: 'Пицца с хреном ',
-                description:
-                    'Возможно, первая в истории пицца с пикантным сливочным хреном, свиной шейкой, красным луком и маринованными огурчиками. Дерзайте пробовать!',
-                imageUrl:
-                    'https://media.dodostatic.net/image/r:292x292/0199b8e98ec871ab8a443887a3e1a136.avif',
-                price: 469,
-                rating: 2,
-                categoryId: 3,
-            },
-            {
-                id: 3,
-                title: 'Мясная',
-                description:
-                    'Перезагрузили рецепт: теперь пять видов мяса и новый фирменный соус, который делает вкус еще ярче. Цыпленок, говядина, колбаски, пепперони и бекон стали еще мяснее!',
-                imageUrl:
-                    'https://media.dodostatic.net/image/r:292x292/019a897c5ea574b889475bd98412de7b.avif',
-                price: 389,
-                rating: 6,
-                categoryId: 2,
-            },
+            // Масала - 1 размер
+            { productId: 1, size: 30, price: 450 },
+
+            // Пицца с хреном - 2 размера
+            { productId: 2, size: 25, price: 500 },
+            { productId: 2, size: 35, price: 700 },
+
+            // Мясная - 3 размера
+            { productId: 3, size: 20, price: 400 },
+            { productId: 3, size: 30, price: 600 },
+            { productId: 3, size: 40, price: 800 },
+
+            // Ветчина и грибы - 1 размер
+            { productId: 4, size: 30, price: 550 },
+
+            // Аррива! - 2 размера
+            { productId: 5, size: 25, price: 480 },
+            { productId: 5, size: 35, price: 650 },
+
+            // Креветски со сладким чили - 1 размер
+            { productId: 6, size: 30, price: 620 },
+
+            // Карбонара - 3 размера
+            { productId: 7, size: 20, price: 420 },
+            { productId: 7, size: 30, price: 580 },
+            { productId: 7, size: 40, price: 750 },
+
+            // Жюльен - 2 размера
+            { productId: 8, size: 25, price: 530 },
+            { productId: 8, size: 35, price: 680 },
+
+            // Песто - 1 размер
+            { productId: 9, size: 30, price: 570 },
+
+            // Бургер-пицца - 2 размера
+            { productId: 10, size: 25, price: 490 },
+            { productId: 10, size: 35, price: 670 },
+
+            // Сырный цыпленок - 3 размера
+            { productId: 11, size: 20, price: 430 },
+            { productId: 11, size: 30, price: 590 },
+            { productId: 11, size: 40, price: 780 },
+
+            // Пепперони - 1 размер
+            { productId: 12, size: 30, price: 540 },
         ],
     });
 
     await prisma.typeOption.createMany({
-        data: typesProduct,
+        data: [
+            // Масала - 2 типа
+            { productId: 1, type: 'Обычная', price: 0 },
+            { productId: 1, type: 'Традиционная', price: 50 },
+
+            // Пицца с хреном - 1 тип
+            { productId: 2, type: 'Обычная', price: 0 },
+
+            // Мясная - 2 типа
+            { productId: 3, type: 'Обычная', price: 0 },
+            { productId: 3, type: 'Традиционная', price: 60 },
+
+            // Ветчина и грибы - 1 тип
+            { productId: 4, type: 'Обычная', price: 0 },
+
+            // Аррива! - 2 типа
+            { productId: 5, type: 'Обычная', price: 0 },
+            { productId: 5, type: 'Традиционная', price: 55 },
+
+            // Креветски со сладким чили - 1 тип
+            { productId: 6, type: 'Обычная', price: 0 },
+
+            // Карбонара - 2 типа
+            { productId: 7, type: 'Обычная', price: 0 },
+            { productId: 7, type: 'Традиционная', price: 70 },
+
+            // Жюльен - 1 тип
+            { productId: 8, type: 'Обычная', price: 0 },
+
+            // Песто - 2 типа
+            { productId: 9, type: 'Обычная', price: 0 },
+            { productId: 9, type: 'Традиционная', price: 65 },
+
+            // Бургер-пицца - 1 тип
+            { productId: 10, type: 'Обычная', price: 0 },
+
+            // Сырный цыпленок - 2 типа
+            { productId: 11, type: 'Обычная', price: 0 },
+            { productId: 11, type: 'Традиционная', price: 75 },
+
+            // Пепперони - 1 тип
+            { productId: 12, type: 'Обычная', price: 0 },
+        ],
     });
 
-    await prisma.sizeOption.createMany({
-        data: sizesProduct,
+    await prisma.ingredient.createMany({
+        data: [
+            // Масала - есть ингредиенты
+            {
+                productId: 1,
+                img: ingredients[0].img,
+                title: ingredients[0].title,
+                price: ingredients[0].price,
+            },
+            {
+                productId: 1,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+            {
+                productId: 1,
+                img: ingredients[5].img,
+                title: ingredients[5].title,
+                price: ingredients[5].price,
+            },
+
+            // Пицца с хреном - нет ингредиентов
+
+            // Мясная - есть ингредиенты
+            {
+                productId: 3,
+                img: ingredients[1].img,
+                title: ingredients[1].title,
+                price: ingredients[1].price,
+            },
+            {
+                productId: 3,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+            {
+                productId: 3,
+                img: ingredients[3].img,
+                title: ingredients[3].title,
+                price: ingredients[3].price,
+            },
+            {
+                productId: 3,
+                img: ingredients[5].img,
+                title: ingredients[5].title,
+                price: ingredients[5].price,
+            },
+
+            // Ветчина и грибы - есть ингредиенты
+            {
+                productId: 4,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+            {
+                productId: 4,
+                img: ingredients[6].img,
+                title: ingredients[6].title,
+                price: ingredients[6].price,
+            },
+
+            // Аррива! - нет ингредиентов
+
+            // Креветски со сладким чили - есть ингредиенты
+            {
+                productId: 6,
+                img: ingredients[0].img,
+                title: ingredients[0].title,
+                price: ingredients[0].price,
+            },
+            {
+                productId: 6,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+
+            // Карбонара - есть ингредиенты
+            {
+                productId: 7,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+            {
+                productId: 7,
+                img: ingredients[3].img,
+                title: ingredients[3].title,
+                price: ingredients[3].price,
+            },
+            {
+                productId: 7,
+                img: ingredients[4].img,
+                title: ingredients[4].title,
+                price: ingredients[4].price,
+            },
+
+            // Жюльен - нет ингредиентов
+
+            // Песто - есть ингредиенты
+            {
+                productId: 9,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+            {
+                productId: 9,
+                img: ingredients[5].img,
+                title: ingredients[5].title,
+                price: ingredients[5].price,
+            },
+
+            // Бургер-пицца - есть ингредиенты
+            {
+                productId: 10,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+
+            // Сырный цыпленок - есть ингредиенты
+            {
+                productId: 11,
+                img: ingredients[2].img,
+                title: ingredients[2].title,
+                price: ingredients[2].price,
+            },
+            {
+                productId: 11,
+                img: ingredients[3].img,
+                title: ingredients[3].title,
+                price: ingredients[3].price,
+            },
+            {
+                productId: 11,
+                img: ingredients[5].img,
+                title: ingredients[5].title,
+                price: ingredients[5].price,
+            },
+
+            // Пепперони - нет ингредиентов
+        ],
     });
 
-    await prisma.ingredients.createMany({
-        data: ingredients,
+    // Добавляем некоторые товары в корзины пользователей
+    await prisma.basketItem.createMany({
+        data: [
+            { userBasketId: 1, productId: 1, quantity: 2 },
+            { userBasketId: 1, productId: 3, quantity: 1 },
+            { userBasketId: 2, productId: 5, quantity: 1 },
+            { userBasketId: 2, productId: 7, quantity: 3 },
+            { userBasketId: 3, productId: 9, quantity: 1 },
+            { userBasketId: 3, productId: 11, quantity: 2 },
+        ],
     });
 
-    await prisma.filters.createMany({
-        data: filters,
-    });
+    console.log('Seed completed successfully!');
 }
 
-async function main() {
-    await up();
-}
-
-main();
+seed();

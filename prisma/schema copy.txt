@@ -1,0 +1,149 @@
+// generator client {
+//     provider = "prisma-client-js"
+// }
+
+// datasource db {
+//     provider = "postgresql"
+//     url      = env("DATABASE_URL")
+// }
+
+// enum UserRole {
+//     ADMIN
+//     USER
+// }
+
+// model User {
+//     id Int @id @default(autoincrement())
+
+//     surname    String
+//     name       String
+//     patronymic String?
+//     role       UserRole
+
+//     basket UserBasket?
+// }
+
+// model UserBasket {
+//     id Int @id @default(autoincrement())
+
+//     userId Int  @unique
+//     user   User @relation(fields: [userId], references: [id])
+
+//     items BasketItem[]
+// }
+
+// model BasketItem {
+//     id Int @id @default(autoincrement())
+
+//     basketId Int
+//     basket   UserBasket @relation(fields: [basketId], references: [id])
+
+//     productItemId Int
+//     productItem   ProductItem @relation(fields: [productItemId], references: [id])
+
+//     quantity Int
+// }
+
+// model Product {
+//     id Int @id @default(autoincrement())
+
+//     title       String
+//     description String
+//     imageUrl    String
+//     rating      Int
+
+//     categoryId Int?
+//     category   Category? @relation(fields: [categoryId], references: [id])
+
+//     items ProductItem[]
+// }
+
+// model ProductItem {
+//     id Int @id @default(autoincrement())
+
+//     productId Int
+//     product   Product @relation(fields: [productId], references: [id])
+
+//     price Int
+
+//     // связи через join-таблицы
+//     typeOptions ProductItemTypeOption[]
+//     sizeOptions ProductItemSizeOption[]
+
+//     ingredients ProductItemIngredient[]
+//     basketItems BasketItem[]
+// }
+
+// model Ingredient {
+//     id Int @id @default(autoincrement())
+
+//     img   String
+//     title String
+//     price Int
+
+//     productItems ProductItemIngredient[]
+// }
+
+// model ProductItemIngredient {
+//     id Int @id @default(autoincrement())
+
+//     productItemId Int
+//     productItem   ProductItem @relation(fields: [productItemId], references: [id])
+
+//     ingredientId Int
+//     ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+// }
+
+// model ProductItemTypeOption {
+//     id Int @id @default(autoincrement())
+
+//     productItemId Int
+//     productItem   ProductItem @relation(fields: [productItemId], references: [id])
+
+//     typeOptionId Int
+//     typeOption   TypeOption @relation(fields: [typeOptionId], references: [id])
+
+//     @@unique([productItemId, typeOptionId])
+// }
+
+// model ProductItemSizeOption {
+//     id Int @id @default(autoincrement())
+
+//     productItemId Int
+//     productItem   ProductItem @relation(fields: [productItemId], references: [id])
+
+//     sizeOptionId Int
+//     sizeOption   SizeOption @relation(fields: [sizeOptionId], references: [id])
+
+//     @@unique([productItemId, sizeOptionId])
+// }
+
+// model TypeOption {
+//     id    Int    @id @default(autoincrement())
+//     type  String
+//     price Int?
+
+//     productItemTypeOptions ProductItemTypeOption[]
+// }
+
+// model SizeOption {
+//     id    Int  @id @default(autoincrement())
+//     size  Int
+//     price Int?
+
+//     productItemSizeOptions ProductItemSizeOption[]
+// }
+
+// model Category {
+//     id Int @id @default(autoincrement())
+
+//     title String @unique
+
+//     products Product[]
+// }
+
+// model Filter {
+//     id Int @id @default(autoincrement())
+
+//     title String
+// }

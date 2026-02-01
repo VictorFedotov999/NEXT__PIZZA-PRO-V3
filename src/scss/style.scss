@@ -6,6 +6,16 @@
 @import 'libs';
 @import 'media';
 
+// .black--font {
+//     background-color: black;
+// }
+
+a {
+    text-decoration: none;
+
+    color: inherit;
+}
+
 .header {
     margin-top: 45px;
     padding-bottom: 40px;
@@ -47,7 +57,7 @@
             content: '';
             width: 16px;
             height: 16px;
-            background-image: url(/img/header/headerSearch.svg);
+            background-image: url(../../public/header/headerSearch.svg);
             background-repeat: no-repeat;
             background-size: cover;
             position: absolute;
@@ -71,6 +81,16 @@
         }
 
         @include shadow-box;
+    }
+
+    &__search-delete {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: 10px;
+        right: 680px;
+        top: 55px;
+        cursor: pointer;
     }
 
     &__profile-btn {
@@ -165,6 +185,37 @@
 
         &.active {
             display: block;
+        }
+    }
+
+    &__popup {
+        z-index: 1;
+        display: none;
+        background-color: #fff;
+        border-radius: 10px;
+        position: absolute;
+        top: 100px;
+        width: 645px;
+
+        &.active {
+            display: block;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            font-weight: 400;
+            &:hover {
+                background-color: #fffaf6;
+                color: $--orange-color;
+            }
+
+            &-title,
+            &-price {
+                font-weight: 400;
+            }
         }
     }
 }
@@ -779,11 +830,12 @@
         &-types {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            max-width: 350px;
             margin-bottom: 20px;
+
             background-color: #ececec;
             border-radius: 30px;
-            width: 400px;
             padding: 4px;
         }
 

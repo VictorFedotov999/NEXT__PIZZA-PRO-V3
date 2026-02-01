@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import { BasketCostBtn } from './BasketCostBtn';
 
-export const BasketCost = () => {
+export const BasketCost = ({ onClickBasket }) => {
     return (
         <>
             <div className='basket__bottom'>
@@ -13,7 +14,10 @@ export const BasketCost = () => {
                         <h3 className='basket__sum-text'>Налог 5%:</h3>
                         <h3 className='basket__sum-price'>122 ₽</h3>
                     </div>
-                    <BasketCostBtn />
+
+                    <Link href={'/order'} onClick={() => onClickBasket(false)}>
+                        <BasketCostBtn />
+                    </Link>
                 </div>
             </div>
         </>

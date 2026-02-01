@@ -1,6 +1,7 @@
 import '../scss/style.scss';
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
+import { Header } from '../../components/Header/Header';
 
 const nunito = Nunito({
     variable: '--font-Nunito',
@@ -19,7 +20,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <body className='body'>{children}</body>
+            <body className='body'>
+                <Header />
+                {children}
+            </body>
         </html>
     );
 }

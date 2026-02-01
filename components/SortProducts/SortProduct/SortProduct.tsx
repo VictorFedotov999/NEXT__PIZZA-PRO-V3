@@ -2,6 +2,7 @@
 import React from 'react';
 
 import { SortProductSvg } from './SortProductSvg';
+import { useClickAway } from 'react-use';
 
 export const SortProduct = () => {
     const sorts = ['рейтингу', 'цене', 'алфавиту'];
@@ -16,9 +17,15 @@ export const SortProduct = () => {
         setActiveSort(index);
         setOpenSortPopup(false);
     };
+
+    const ref = React.useRef(null);
+    useClickAway(ref, () => {
+        setOpenSortPopup(false);
+    });
+
     return (
         <>
-            <div className='sort__inner'>
+            <div className='sort__inner' ref={ref}>
                 <SortProductSvg />
 
                 <p className='sort__title:'>Сортировка:</p>

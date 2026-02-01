@@ -1,8 +1,8 @@
 'use client';
 
-import { AuthorizationBtn } from 'components/AuthorizationBtn/AuthorizationBtn';
+import { useClickAway } from 'react-use';
 import { IconSvg } from './IconSvg';
-import React from 'react';
+import React, { useRef } from 'react';
 
 export const ProfileBtn = () => {
     const settings = ['Настройки', 'Заказы', 'Выйти'];
@@ -17,9 +17,14 @@ export const ProfileBtn = () => {
         setSetting(index);
         setOpenPopup(false);
     };
+
+    const ref = useRef(null);
+    useClickAway(ref, () => {
+        setOpenPopup(false);
+    });
     return (
         <>
-            <div className='header__profile'>
+            <div className='header__profile' ref={ref}>
                 <button className='header__profile-btn'>
                     <IconSvg />
                     <p className='header__profile-text' onClick={onClickOpenPopup}>

@@ -7,6 +7,7 @@ export const CategoryProduct = () => {
     const [category, setCategory] = React.useState(0);
 
     const [categorys, setCategorys] = React.useState([]);
+
     React.useEffect(() => {
         getCategorys().then((res) => setCategorys(res));
     }, []);
@@ -21,7 +22,7 @@ export const CategoryProduct = () => {
                 <div className='product__categorie-inner'>
                     {categorys.map((categor, index) => (
                         <div
-                            key={`${categor.id}`}
+                            key={index}
                             onClick={() => onClickCategory(index)}
                             className={
                                 category === index

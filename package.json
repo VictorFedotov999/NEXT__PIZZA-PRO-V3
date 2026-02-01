@@ -7,18 +7,24 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prisma-seed": "tsx prisma/seed.ts"
+    "seed": "tsx prisma/seed.ts",
+    "refresh": "npx prisma migrate reset && tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
     "axios": "^1.13.4",
+    "lodash.debounce": "^4.0.8",
     "next": "16.1.6",
     "prisma": "^5.22.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "sass": "^1.97.3"
+    "react-use": "^17.6.0",
+    "sass": "^1.97.3",
+    "tsx": "^4.21.0",
+    "use-debounce": "^10.1.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.23",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

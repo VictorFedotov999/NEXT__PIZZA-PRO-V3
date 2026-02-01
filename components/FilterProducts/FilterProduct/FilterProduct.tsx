@@ -2,7 +2,7 @@ import { prisma } from '../../../prisma/prisma-client';
 import { FilterProductItem } from '../FilterProductItem/FilterProductItem';
 
 export const FilterProduct = async () => {
-    const filter = await prisma.filters.findMany();
+    const filter = await prisma.filter.findMany();
 
     return (
         <>

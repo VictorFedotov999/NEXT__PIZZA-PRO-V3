@@ -1,0 +1,502 @@
+// import { categories, filters, ingredients, product, sizesProduct, typesProduct } from './constans';
+// import { prisma } from './prisma-client';
+
+// async function seed() {
+//     // --- Категории ---
+//     await prisma.category.createMany({ data: categories });
+
+//     // --- Пользователи ---
+//     await prisma.user.createMany({
+//         data: [
+//             { name: 'Nikita', surname: 'Pashenko', patronymic: null, role: 'USER' },
+//             { name: 'Andrey', surname: 'Nikiten', patronymic: null, role: 'USER' },
+//             { name: 'Pasha', surname: 'Litakov', patronymic: null, role: 'USER' },
+//         ],
+//     });
+
+//     // --- Корзины пользователей ---
+//     await prisma.userBasket.createMany({
+//         data: [{ userId: 1 }, { userId: 2 }, { userId: 3 }],
+//     });
+
+//     // --- Продукты ---
+//     await prisma.product.createMany({ data: product });
+
+//     // --- Типы опций ---
+//     await prisma.typeOption.createMany({ data: typesProduct });
+
+//     // --- Размеры опций ---
+//     await prisma.sizeOption.createMany({ data: sizesProduct });
+
+//     // --- Ингредиенты ---
+//     await prisma.ingredient.createMany({ data: ingredients });
+
+//     // --- Фильтры ---
+//     await prisma.filter.createMany({ data: filters });
+
+//     // --- Создаем РАЗНЫЕ конфигурации для каждого продукта ---
+
+//     // Продукт 1: Масала - только маленькая и средняя, только традиционная
+//     const productItem1 = await prisma.productItem.create({
+//         data: {
+//             productId: 1,
+//             price: 100, // базовая цена для маленькой традиционной
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem1.id, typeOptionId: 2 }, // традиционная
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem1.id, sizeOptionId: 1 }, // 20см
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem1.id, ingredientId: 3 }, // моцарелла
+//             { productItemId: productItem1.id, ingredientId: 6 }, // цыпленок
+//         ],
+//     });
+
+//     const productItem2 = await prisma.productItem.create({
+//         data: {
+//             productId: 1,
+//             price: 130, // средняя традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem2.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem2.id, sizeOptionId: 2 }, // 30см
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem2.id, ingredientId: 3 },
+//             { productItemId: productItem2.id, ingredientId: 6 },
+//         ],
+//     });
+
+//     // Продукт 2: Пицца с хреном - все размеры, оба типа
+//     const productItem3 = await prisma.productItem.create({
+//         data: {
+//             productId: 2,
+//             price: 120, // маленькая обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem3.id, typeOptionId: 1 }, // обычная
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem3.id, sizeOptionId: 1 }, // 20см
+//     });
+
+//     const productItem4 = await prisma.productItem.create({
+//         data: {
+//             productId: 2,
+//             price: 170, // средняя традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem4.id, typeOptionId: 2 }, // традиционная
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem4.id, sizeOptionId: 2 }, // 30см
+//     });
+
+//     const productItem5 = await prisma.productItem.create({
+//         data: {
+//             productId: 2,
+//             price: 220, // большая традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem5.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem5.id, sizeOptionId: 3 }, // 40см
+//     });
+
+//     // Продукт 3: Мясная - только большая, только обычная, много ингредиентов
+//     const productItem6 = await prisma.productItem.create({
+//         data: {
+//             productId: 3,
+//             price: 250, // большая обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem6.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem6.id, sizeOptionId: 3 }, // 40см
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem6.id, ingredientId: 1 }, // сырный бортик
+//             { productItemId: productItem6.id, ingredientId: 2 }, // говядина
+//             { productItemId: productItem6.id, ingredientId: 3 }, // моцарелла
+//         ],
+//     });
+
+//     // Продукт 4: Ветчина и грибы - средняя, оба типа
+//     const productItem7 = await prisma.productItem.create({
+//         data: {
+//             productId: 4,
+//             price: 140, // средняя обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem7.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem7.id, sizeOptionId: 2 },
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem7.id, ingredientId: 3 }, // моцарелла
+//             { productItemId: productItem7.id, ingredientId: 7 }, // шампиньоны
+//         ],
+//     });
+
+//     const productItem8 = await prisma.productItem.create({
+//         data: {
+//             productId: 4,
+//             price: 190, // средняя традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem8.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem8.id, sizeOptionId: 2 },
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem8.id, ingredientId: 3 },
+//             { productItemId: productItem8.id, ingredientId: 7 },
+//             { productItemId: productItem8.id, ingredientId: 4 }, // дополнительный сыр
+//         ],
+//     });
+
+//     // Продукт 5: Аррива! - все размеры, только традиционная
+//     const productItem9 = await prisma.productItem.create({
+//         data: {
+//             productId: 5,
+//             price: 130, // маленькая
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem9.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem9.id, sizeOptionId: 1 },
+//     });
+
+//     const productItem10 = await prisma.productItem.create({
+//         data: {
+//             productId: 5,
+//             price: 180, // средняя
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem10.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem10.id, sizeOptionId: 2 },
+//     });
+
+//     const productItem11 = await prisma.productItem.create({
+//         data: {
+//             productId: 5,
+//             price: 230, // большая
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem11.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem11.id, sizeOptionId: 3 },
+//     });
+
+//     // Продукт 6: Креветски - только один вариант (средняя традиционная)
+//     const productItem12 = await prisma.productItem.create({
+//         data: {
+//             productId: 6,
+//             price: 200, // средняя традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem12.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem12.id, sizeOptionId: 2 },
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem12.id, ingredientId: 3 },
+//             { productItemId: productItem12.id, ingredientId: 4 },
+//             { productItemId: productItem12.id, ingredientId: 5 }, // блю чиз
+//         ],
+//     });
+
+//     // Продукт 7: Карбонара - маленькая и большая, оба типа
+//     const productItem13 = await prisma.productItem.create({
+//         data: {
+//             productId: 7,
+//             price: 110, // маленькая обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem13.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem13.id, sizeOptionId: 1 },
+//     });
+
+//     const productItem14 = await prisma.productItem.create({
+//         data: {
+//             productId: 7,
+//             price: 160, // маленькая традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem14.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem14.id, sizeOptionId: 1 },
+//     });
+
+//     const productItem15 = await prisma.productItem.create({
+//         data: {
+//             productId: 7,
+//             price: 210, // большая обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem15.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem15.id, sizeOptionId: 3 },
+//     });
+
+//     const productItem16 = await prisma.productItem.create({
+//         data: {
+//             productId: 7,
+//             price: 260, // большая традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem16.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem16.id, sizeOptionId: 3 },
+//     });
+
+//     // Продукт 8: Жюльен - только средняя, оба типа
+//     const productItem17 = await prisma.productItem.create({
+//         data: {
+//             productId: 8,
+//             price: 150, // средняя обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem17.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem17.id, sizeOptionId: 2 },
+//     });
+
+//     const productItem18 = await prisma.productItem.create({
+//         data: {
+//             productId: 8,
+//             price: 200, // средняя традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem18.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem18.id, sizeOptionId: 2 },
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem18.id, ingredientId: 6 }, // цыпленок
+//             { productItemId: productItem18.id, ingredientId: 7 }, // шампиньоны
+//         ],
+//     });
+
+//     // Продукт 9: Песто - все размеры, только обычная
+//     const productItem19 = await prisma.productItem.create({
+//         data: {
+//             productId: 9,
+//             price: 120, // маленькая
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem19.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem19.id, sizeOptionId: 1 },
+//     });
+
+//     const productItem20 = await prisma.productItem.create({
+//         data: {
+//             productId: 9,
+//             price: 170, // средняя
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem20.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem20.id, sizeOptionId: 2 },
+//     });
+
+//     const productItem21 = await prisma.productItem.create({
+//         data: {
+//             productId: 9,
+//             price: 220, // большая
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem21.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem21.id, sizeOptionId: 3 },
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem21.id, ingredientId: 3 },
+//             { productItemId: productItem21.id, ingredientId: 4 },
+//         ],
+//     });
+
+//     // Продукт 10: Бургер-пицца - только большая, оба типа
+//     const productItem22 = await prisma.productItem.create({
+//         data: {
+//             productId: 10,
+//             price: 200, // большая обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem22.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem22.id, sizeOptionId: 3 },
+//     });
+
+//     const productItem23 = await prisma.productItem.create({
+//         data: {
+//             productId: 10,
+//             price: 250, // большая традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem23.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem23.id, sizeOptionId: 3 },
+//     });
+
+//     // Продукт 11: Сырный цыпленок - маленькая и большая, только традиционная
+//     const productItem24 = await prisma.productItem.create({
+//         data: {
+//             productId: 11,
+//             price: 130, // маленькая
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem24.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem24.id, sizeOptionId: 1 },
+//     });
+
+//     const productItem25 = await prisma.productItem.create({
+//         data: {
+//             productId: 11,
+//             price: 230, // большая
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem25.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem25.id, sizeOptionId: 3 },
+//     });
+//     await prisma.productItemIngredient.createMany({
+//         data: [
+//             { productItemId: productItem25.id, ingredientId: 3 },
+//             { productItemId: productItem25.id, ingredientId: 4 },
+//             { productItemId: productItem25.id, ingredientId: 6 },
+//         ],
+//     });
+
+//     // Продукт 12: Пепперони - все размеры, оба типа
+//     const productItem26 = await prisma.productItem.create({
+//         data: {
+//             productId: 12,
+//             price: 100, // маленькая обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem26.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem26.id, sizeOptionId: 1 },
+//     });
+
+//     const productItem27 = await prisma.productItem.create({
+//         data: {
+//             productId: 12,
+//             price: 150, // средняя обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem27.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem27.id, sizeOptionId: 2 },
+//     });
+
+//     const productItem28 = await prisma.productItem.create({
+//         data: {
+//             productId: 12,
+//             price: 200, // большая обычная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem28.id, typeOptionId: 1 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem28.id, sizeOptionId: 3 },
+//     });
+
+//     const productItem29 = await prisma.productItem.create({
+//         data: {
+//             productId: 12,
+//             price: 150, // маленькая традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem29.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem29.id, sizeOptionId: 1 },
+//     });
+
+//     const productItem30 = await prisma.productItem.create({
+//         data: {
+//             productId: 12,
+//             price: 200, // средняя традиционная
+//         },
+//     });
+//     await prisma.productItemTypeOption.create({
+//         data: { productItemId: productItem30.id, typeOptionId: 2 },
+//     });
+//     await prisma.productItemSizeOption.create({
+//         data: { productItemId: productItem30.id, sizeOptionId: 2 },
+//     });
+
+//     console.log('✅ Seed completed!');
+// }
+
+// seed();

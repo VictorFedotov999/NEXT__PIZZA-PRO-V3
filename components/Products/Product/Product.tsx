@@ -3,14 +3,13 @@ import Link from 'next/link';
 import { ProductBtnConfigurate } from './ProductBtnConfigurate/ProductBtnConfigurate';
 
 type Props = {
-    id: string;
+    id: number;
     title: string;
     description: string;
     imageUrl: string;
-    price: number;
 };
 
-export const Product = ({ id, title, description, imageUrl, price }: Props) => {
+export const Product = ({ id, title, description, imageUrl }: Props) => {
     return (
         <Link href={`/prods/${id}`}>
             <div className='item active-setting'>
@@ -20,7 +19,7 @@ export const Product = ({ id, title, description, imageUrl, price }: Props) => {
                 <p className='item-text'>{description}</p>
                 <div className='item-bottom'>
                     <p className='item-price'>
-                        от <span className='item-price_bold'>{price} ₽</span>
+                        от <span className='item-price_bold'> 340 ₽</span>
                     </p>
                     <ProductBtnConfigurate />
                 </div>

@@ -2,7 +2,13 @@ import { prisma } from '../../../prisma/prisma-client';
 import { FilterIngredientItem } from '../FilterIngredientItem/FilterIngredientItem';
 
 export const FilterIngredients = async () => {
-    const ingredients = await prisma.ingredients.findMany();
+    const ingredients = await prisma.ingredient.findMany({
+        distinct: ['title'],
+        orderBy: {
+            title: 'asc',
+        },
+    });
+    console.log(ingredients);
 
     return (
         <>

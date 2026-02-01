@@ -1,106 +1,176 @@
-export const categorys = [
+export const categories = [
     {
-        id: 1,
         title: 'Все',
     },
     {
-        id: 2,
         title: 'Мясные',
     },
     {
-        id: 3,
         title: 'Острые',
     },
     {
-        id: 4,
         title: 'Сладкие',
     },
     {
-        id: 5,
         title: 'Вегетарианские',
     },
     {
-        id: 6,
         title: 'C курицей',
-    },
-];
-
-export const ingredients = [
-    {
-        id: 1,
-        img: 'https://cdn.dodostatic.net/static/Img/Ingredients/0199152f20c570859ff617c0a6ef03d3.png',
-        title: 'Сырный бортик',
-        price: 219,
-    },
-    {
-        id: 2,
-        img: 'https://cdn.dodostatic.net/static/Img/Ingredients/01991530635b73ecb1a22658b49e1653.png',
-        title: 'Прямая говядина',
-        price: 139,
-    },
-    {
-        id: 3,
-        img: 'https://cdn.dodostatic.net/static/Img/Ingredients/0199ae74f2fd783b8fb21bb0af7d09e6.png',
-        title: 'Моцарелла',
-        price: 115,
-    },
-    {
-        id: 4,
-        img: 'https://cdn.dodostatic.net/static/Img/Ingredients/0199152e59157089adb89948280ebb10.png',
-        title: 'Нежный цыпленок',
-        price: 99,
-    },
-    {
-        id: 5,
-        img: 'https://cdn.dodostatic.net/static/Img/Ingredients/0199152bfda5723f8bbecc43a35f83f1.png',
-        title: 'Шампиньоны',
-        price: 79,
-    },
-    {
-        id: 6,
-        img: 'https://cdn.dodostatic.net/static/Img/Ingredients/0199ae744508792995ccae4ff71e233e.png',
-        title: 'Бекон',
-        price: 99,
     },
 ];
 
 export const filters = [
     {
-        id: 1,
         title: 'Можно собирать',
     },
     {
-        id: 2,
         title: 'Новинки',
     },
 ];
 
-export const typesProduct = [
+export const product = [
     {
-        id: 1,
-        type: 'Обычная',
-        price: 0,
-        productId: 2,
+        title: 'Масала',
+        description:
+            'Пряные новости: у нас новинка с индийскими мотивами! В ней сочный цыпленок, лук, помидоры, перец, соусы альфредо и масала',
+        imageUrl: '../../../../allProducts/pizza/product1.avif',
+
+        rating: 4,
+        categoryId: 1,
     },
     {
-        id: 2,
-        type: 'Традиционная',
-        price: 50,
-        productId: 1,
+        title: 'Пицца с хреном ',
+        description:
+            'Возможно, первая в истории пицца с пикантным сливочным хреном, свиной шейкой, красным луком и маринованными огурчиками. Дерзайте пробовать!',
+        imageUrl: '../../../../allProducts/pizza/product2.avif',
+
+        rating: 2,
+        categoryId: 1,
+    },
+    {
+        title: 'Мясная',
+        description:
+            'Перезагрузили рецепт: теперь пять видов мяса и новый фирменный соус, который делает вкус еще ярче. Цыпленок, говядина, колбаски, пепперони и бекон стали еще мяснее!',
+        imageUrl: '../../../../allProducts/pizza/product3.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Ветчина и грибы',
+        description: 'Ветчина, шампиньоны, увеличенная порция моцареллы, фирменный томатный соус',
+        imageUrl: '../../../../allProducts/pizza/product4.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Аррива!',
+        description:
+            'Цыпленок, острые колбаски чоризо, соус бургер, сладкий перец, красный лук, томаты, моцарелла, соус ранч, чеснок',
+        imageUrl: '../../../../allProducts/pizza/product5.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Креветски со сладким чили',
+        description:
+            'Креветки, ананасы, соус сладкий чили, сладкий перец, моцарелла, фирменный соус альфредо',
+        imageUrl: '../../../../allProducts/pizza/product6.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Карбонара',
+        description:
+            'Бекон, сыры чеддер и пармезан, моцарелла, томаты, красный лук, чеснок, фирменный соус альфредо, итальянские травы',
+        imageUrl: '../../../../allProducts/pizza/product7.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Жюльен',
+        description:
+            'Цыпленок, шампиньоны, ароматный грибной соус, лук, сухой чеснок, моцарелла, смесь сыров чеддер и пармезан, фирменный соус альфредо',
+        imageUrl: '../../../../allProducts/pizza/product8.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Песто',
+        description:
+            'Двойная порция цыпленка, соус песто, кубики брынзы, томаты, моцарелла, фирменный соус альфредо',
+        imageUrl: '../../../../allProducts/pizza/product9.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Бургер-пицца',
+        description:
+            'Ветчина, маринованные огурчики, томаты, красный лук, чеснок, соус бургер, моцарелла, фирменный томатный соус',
+        imageUrl: '../../../../allProducts/pizza/product10.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Сырный цыпленок',
+        description:
+            'Двойная порция цыпленка, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, фирменный соус альфредо, чеснок',
+        imageUrl: '../../../../allProducts/pizza/product11.avif',
+
+        rating: 6,
+        categoryId: 1,
+    },
+    {
+        title: 'Пепперони',
+        description: 'Пикантная пепперони, увеличенная порция моцареллы, фирменный томатный соус',
+        imageUrl: '../../../../allProducts/pizza/product12.avif',
+
+        rating: 6,
+        categoryId: 1,
     },
 ];
 
-export const sizesProduct = [
+export const ingredients = [
     {
-        id: 1,
-        size: 22,
-        price: 0,
-        productId: 2,
+        img: '../../../allProducts/ingredients/ingredient1.png',
+        title: 'Сырный бортик',
+        price: 219,
     },
     {
-        id: 2,
-        size: 44,
-        price: 0,
-        productId: 2,
+        img: '../../../allProducts/ingredients/ingredient2.png',
+        title: 'Прямая говядина',
+        price: 139,
+    },
+    {
+        img: '../../../allProducts/ingredients/ingredient3.png',
+        title: 'Моцарелла',
+        price: 115,
+    },
+    {
+        img: '../../../allProducts/ingredients/ingredient4.png',
+        title: 'Сыр чеддер и пармезан',
+        price: 89,
+    },
+    {
+        img: '../../../allProducts/ingredients/ingredient5.png',
+        title: 'Сыр блю чиз',
+        price: 169,
+    },
+    {
+        img: '../../../allProducts/ingredients/ingredient6.png',
+        title: 'Нежный цыпленок',
+        price: 99,
+    },
+    {
+        img: '../../../allProducts/ingredients/ingredient7.png',
+        title: 'Шампиньоны',
+        price: 79,
     },
 ];
