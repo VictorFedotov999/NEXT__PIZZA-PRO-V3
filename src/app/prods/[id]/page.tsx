@@ -15,19 +15,35 @@ const ProductPage = async ({ params }: PropsType) => {
     const { id } = await params;
     const numericId = Number(id);
 
-    const product = await prisma.product.findUnique({
-        where: { id: numericId },
-        include: {
-            sizeOption: {},
-            typeOption: {},
-            ingredient: {},
+    const sizeOptions = await prisma.sizeOption.findMany({
+        distinct: ['size'],
+        orderBy: {
+            size: 'asc',
         },
     });
+
+    const typeOptions = await prisma.typeOption.findMany({
+        distinct: ['type'],
+        orderBy: {
+            type: 'asc',
+        },
+    });
+
+    const product = await prisma.product.findUniqueOrThrow({
+        where: { id: numericId },
+        include: {
+            sizeOption: true,
+            typeOption: true,
+            ingredient: true,
+        },
+    });
+
+    const productId = product.id;
     const sizes = product.sizeOption;
     const types = product.typeOption;
     const ingredients = product.ingredient;
+    console.log(sizes, sizeOptions);
 
-    console.log(sizes);
     return (
         <section className='product'>
             <div className='container'>
@@ -38,12 +54,13 @@ const ProductPage = async ({ params }: PropsType) => {
                         <ItemTitle product={product} />
                         <p className='product__info-text'>25 см, традиционное тесто 25, 380 г</p>
 
-                        <ItemSizes sizes={sizes} />
+                        <ItemSizes sizes={sizes} sizeOptions={sizeOptions} />
 
-                        <ItemType types={types} />
+                        <ItemType types={types} typeOptions={typeOptions} />
 
                         <ItemIgredients ingredients={ingredients} />
-                        <ItemButton />
+
+                        <ItemButton productId={productId} />
                     </div>
                 </div>
             </div>

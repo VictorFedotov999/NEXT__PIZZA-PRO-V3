@@ -1,47 +1,45 @@
 'use client';
 import React from 'react';
 
-const ItemType = ({ types }) => {
+import { TypeOption } from '@prisma/client';
+
+type PropsType = {
+    types: TypeOption[];
+    typeOptions: TypeOption[];
+};
+
+const ItemType = ({ types, typeOptions }: PropsType) => {
     const [typeActive, setTypeActive] = React.useState(0);
-    const onClickType = (index) => {
+
+    const onClickType = (index: number, isDisabled: boolean) => {
+        if (isDisabled) return;
         setTypeActive(index);
     };
-    console.log(types);
+
     return (
         <>
             <div className='product__info-types'>
-                {types.map((type, index) => (
-                    <div
-                        key={type.id}
-                        onClick={() => onClickType(index)}
-                        className={
-                            typeActive === index
-                                ? 'product__info-sizes-text active'
-                                : 'product__info-sizes-text'
-                        }
-                    >
-                        {type.type}
-                    </div>
-                ))}
+                {typeOptions.map((option, index: number) => {
+                    const isAvailable = types.some(
+                        (productType) => productType.type === option.type,
+                    );
 
-                {/* {types.map((type.map) =>
-                    item.typeOptions.map((types) => (
+                    return (
                         <div
-                            key={types.index}
-                            onClick={() => onClickType(types.typeOption.id)}
-                            className={
-                                type === types.typeOption.id
-                                    ? 'product__info-sizes-text active'
-                                    : 'product__info-sizes-text'
-                            }
+                            key={option.id}
+                            onClick={() => onClickType(index, !isAvailable)}
+                            className={`
+                            product__info-sizes-text
+                            ${typeActive === index ? 'active' : ''}
+                            ${!isAvailable ? 'disabled' : ''}
+                        `}
                         >
-                            {types.typeOption.type}
+                            {option.type}
                         </div>
-                    )),
-                )} */}
+                    );
+                })}
             </div>
         </>
     );
-    ('product__info-type-text');
 };
 export default ItemType;

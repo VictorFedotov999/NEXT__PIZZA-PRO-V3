@@ -1,6 +1,10 @@
 import { BasketInfoBtnClouse } from './BasketInfoBtnClouse';
 
-export const BasketInfo = ({ onClickBasket }) => {
+type PropsType = {
+    onClickBasket: (open: boolean) => void;
+};
+
+export const BasketInfo = ({ onClickBasket }: PropsType) => {
     return (
         <>
             <div className='basket__top'>

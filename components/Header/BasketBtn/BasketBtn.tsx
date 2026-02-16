@@ -1,20 +1,15 @@
 'use client';
 
 import React from 'react';
-import { BasketCost } from '../../Basket/BasketCost/BasketCost';
-import { BasketInfo } from '../../Basket/BasketInfo/BasketInfo';
-import { BasketProducts } from '../../Basket/BasketProducts/BasketProducts';
-// import { BasketBtnEmpty } from 'components/BasketBtnEmpty/BasketBtnEmpty';
-import { BasketBtnEmpty } from '../../BasketBtnEmpty/BasketBtnEmpty';
+
 import { BasketSvg } from './BasketSvg';
-import Link from 'next/link';
 import { Basket } from '../../Basket/Basket';
 
 export const BasketBtn = () => {
     const [openBasket, setOpenBasket] = React.useState(false);
 
-    const onClickBasket = (state) => {
-        setOpenBasket(state);
+    const onClickBasket = (open: boolean) => {
+        setOpenBasket(open);
     };
 
     return (

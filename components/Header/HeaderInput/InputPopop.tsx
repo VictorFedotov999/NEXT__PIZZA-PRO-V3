@@ -5,7 +5,7 @@ const InputPopop = ({ products, setFocused }) => {
             <div className='header__popup active'>
                 <div className='header__popup__items'>
                     {products.map((product) => (
-                        <Link href={`/prods/${product.id}`}>
+                        <Link key={product.id} href={`/prods/${product.id}`}>
                             <div className='header__popup__item' onClick={() => setFocused(false)}>
                                 <img
                                     className='header__popup__item-img'

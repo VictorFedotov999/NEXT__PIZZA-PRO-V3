@@ -1,33 +1,46 @@
 'use client';
 
 import React from 'react';
+import { SizeOption } from '@prisma/client';
 
-const ItemSizes = ({ sizes }) => {
+type PropsType = {
+    sizes: SizeOption[];
+    sizeOptions: SizeOption[];
+};
+
+const ItemSizes = ({ sizes, sizeOptions }: PropsType) => {
     const [sizeActive, setSize] = React.useState(0);
 
-    const onClickSize = (index: number) => {
+    const onClickSize = (index: number, isDisabled: boolean) => {
+        if (isDisabled) return;
         setSize(index);
     };
 
     return (
         <>
             <div className='product__info-sizes'>
-                {sizes.map((size, index: number) => (
-                    <div
-                        key={size.id}
-                        onClick={() => onClickSize(index)}
-                        className={
-                            sizeActive === index
-                                ? 'product__info-sizes-text active'
-                                : 'product__info-sizes-text'
-                        }
-                    >
-                        {size.size} см
-                    </div>
-                ))}
+                {sizeOptions.map((option, index: number) => {
+                    const isAvailable = sizes.some(
+                        (productSize) => productSize.size === option.size,
+                    );
+
+                    return (
+                        <div
+                            key={option.id}
+                            onClick={() => onClickSize(index, !isAvailable)}
+                            className={`
+                            product__info-sizes-text
+                            ${sizeActive === index ? 'active' : ''}
+                            ${!isAvailable ? 'disabled' : ''}
+                        `}
+                        >
+                            {option.size} см
+                        </div>
+                    );
+                })}
             </div>
         </>
     );
 };
-('product__info-sizes-text active');
+
 export default ItemSizes;

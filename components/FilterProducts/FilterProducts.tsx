@@ -1,19 +1,18 @@
-import { FilterBtn } from './FilterBtn/FilterBtn';
 import { FilterIngredients } from './FilterIngredients/FilterIngredients';
 import { FilterPrice } from './FilterPrice/FilterPrice';
-import { FilterProduct } from './FilterProduct/FilterProduct';
+
+import { FilterSize } from './FilterProduct/FilterProduct';
+import { FilterType } from './FilterType/FilterType';
 
 export const FilterProducts = () => {
     return (
         <>
             <div className='filter'>
                 <h1 className='filter__title'>Фильтрация</h1>
-
-                <FilterProduct />
-                <FilterPrice />
-
+                <FilterType />
+                <FilterSize />
+                {/* <FilterPrice /> */}
                 <FilterIngredients />
-                <FilterBtn />
             </div>
         </>
     );

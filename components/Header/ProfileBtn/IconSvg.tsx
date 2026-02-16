@@ -3,6 +3,7 @@ export const IconSvg = () => {
         <>
             <div className='header__profile-img'>
                 <svg
+                    className='heaer__prfile-img'
                     width='13'
                     height='14'
                     viewBox='0 0 13 14'

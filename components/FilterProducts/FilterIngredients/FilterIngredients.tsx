@@ -9,6 +9,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 export const FilterIngredients = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
+
     const [ingredients, setIngredients] = React.useState<Ingredient[]>([]);
     const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
 
@@ -40,15 +41,16 @@ export const FilterIngredients = () => {
         <>
             <div className='filter__ingredients'>
                 <div className='filter__ingredients-title'>Ингредиенты:</div>
-                {ingredients.map((ingredient: Ingredient) => (
-                    <FilterIngredientItem
-                        key={ingredient.img}
-                        ingredients={ingredient}
-                        checked={selectedIds.includes(ingredient.title)}
-                        onChange={() => handleToggle(ingredient)}
-                    />
-                ))}
-
+                <div className='filter__ingredients-list'>
+                    {ingredients.map((ingredient: Ingredient) => (
+                        <FilterIngredientItem
+                            key={ingredient.img}
+                            ingredients={ingredient}
+                            checked={selectedIds.includes(ingredient.title)}
+                            onChange={() => handleToggle(ingredient)}
+                        />
+                    ))}
+                </div>
                 <button className='filter__all'>+ Показать все</button>
             </div>
         </>

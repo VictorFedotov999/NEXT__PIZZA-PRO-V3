@@ -49,8 +49,8 @@ export const ProfileBtn = () => {
                         </h3>
                     ))}
                 </div>
-                {/* <AuthorizationBtn /> */}
             </div>
+            {/* <AuthorizationBtn /> */}
         </>
     );
 };

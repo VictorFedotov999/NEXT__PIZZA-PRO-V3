@@ -104,16 +104,37 @@ a {
         padding: 15px 18px;
         cursor: pointer;
         @include shadow-box;
-    }
-
-    &__profile-text {
         color: $--orange-color;
+
+        &:hover {
+            background-color: $--orange-color;
+            color: white !important;
+            transition: all 0.4s;
+
+            .header__profile-img {
+                stroke: rgb(255, 255, 255) !important;
+
+                path {
+                    stroke: rgb(255, 255, 255) !important;
+                    transition: all 0.4s;
+                }
+            }
+        }
     }
 
     &__basket-btn-empty {
         @include button-outline-orange;
         padding: 17px 14px;
-        @include shadow-box;
+        &:hover {
+            .header__basket-img-empty {
+                stroke: rgb(255, 255, 255) !important;
+
+                path {
+                    stroke: rgb(255, 255, 255) !important;
+                    transition: all 0.4s;
+                }
+            }
+        }
     }
 
     &__basket-btn {
@@ -165,7 +186,9 @@ a {
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-
+            &:hover {
+                background-color: #fffaf6;
+            }
             &.active {
                 color: $--orange-color;
                 background-color: #fffaf6;
@@ -219,7 +242,11 @@ a {
         }
     }
 }
-
+.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .choice__product {
     &-text {
         font-size: 36px;
@@ -248,6 +275,10 @@ a {
         @include TextProductCategorie;
         padding: 10px 26px;
         cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+            color: $--orange-color;
+        }
 
         &.active {
             background-color: #e1dddd41;
@@ -339,6 +370,30 @@ a {
     }
 }
 
+// .filter__ingredients-list {
+//     max-height: 215px; /* или любая другая высота */
+//     overflow-y: auto; /* вертикальный скролл */
+//     padding-right: 8px; /* чтобы не прилипал к краю */
+// }
+
+.filter__ingredients-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filter__ingredients-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.filter__ingredients-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.filter__ingredients-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 .items {
     width: 955px;
     gap: 50px;
@@ -407,12 +462,17 @@ a {
         @include flex-center;
         gap: 8px;
         background-color: #fffaf4;
+        border: 1px solid transparent;
         font-size: 14px;
         font-weight: 600;
         color: $--orange-color;
         padding: 12px 20px;
         border-radius: 20px;
         cursor: pointer;
+        transition: all 0.4s;
+        &:hover {
+            border: 1px solid $--orange-color;
+        }
     }
 
     &__count {

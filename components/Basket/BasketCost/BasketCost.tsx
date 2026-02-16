@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import { BasketCostBtn } from './BasketCostBtn';
 
-export const BasketCost = ({ onClickBasket }) => {
+type PropsType = {
+    onClickBasket: (open: boolean) => void;
+};
+
+export const BasketCost = ({ onClickBasket }: PropsType) => {
     return (
         <>
             <div className='basket__bottom'>

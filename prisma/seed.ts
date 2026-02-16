@@ -34,7 +34,7 @@ async function seed() {
     await prisma.sizeOption.createMany({
         data: [
             // Масала - 1 размер
-            { productId: 1, size: 30, price: 450 },
+            { productId: 1, size: 35, price: 450 },
 
             // Пицца с хреном - 2 размера
             { productId: 2, size: 25, price: 500 },
@@ -42,42 +42,42 @@ async function seed() {
 
             // Мясная - 3 размера
             { productId: 3, size: 20, price: 400 },
-            { productId: 3, size: 30, price: 600 },
-            { productId: 3, size: 40, price: 800 },
+            { productId: 3, size: 35, price: 600 },
+            { productId: 3, size: 45, price: 800 },
 
             // Ветчина и грибы - 1 размер
-            { productId: 4, size: 30, price: 550 },
+            { productId: 4, size: 35, price: 550 },
 
             // Аррива! - 2 размера
-            { productId: 5, size: 25, price: 480 },
+            { productId: 5, size: 20, price: 480 },
             { productId: 5, size: 35, price: 650 },
 
             // Креветски со сладким чили - 1 размер
-            { productId: 6, size: 30, price: 620 },
+            { productId: 6, size: 35, price: 620 },
 
             // Карбонара - 3 размера
             { productId: 7, size: 20, price: 420 },
-            { productId: 7, size: 30, price: 580 },
-            { productId: 7, size: 40, price: 750 },
+            { productId: 7, size: 35, price: 580 },
+            { productId: 7, size: 45, price: 750 },
 
             // Жюльен - 2 размера
-            { productId: 8, size: 25, price: 530 },
+            { productId: 8, size: 20, price: 530 },
             { productId: 8, size: 35, price: 680 },
 
             // Песто - 1 размер
-            { productId: 9, size: 30, price: 570 },
+            { productId: 9, size: 35, price: 570 },
 
             // Бургер-пицца - 2 размера
-            { productId: 10, size: 25, price: 490 },
+            { productId: 10, size: 20, price: 490 },
             { productId: 10, size: 35, price: 670 },
 
             // Сырный цыпленок - 3 размера
             { productId: 11, size: 20, price: 430 },
-            { productId: 11, size: 30, price: 590 },
-            { productId: 11, size: 40, price: 780 },
+            { productId: 11, size: 35, price: 590 },
+            { productId: 11, size: 45, price: 780 },
 
             // Пепперони - 1 размер
-            { productId: 12, size: 30, price: 540 },
+            { productId: 12, size: 35, price: 540 },
         ],
     });
 
@@ -286,8 +286,6 @@ async function seed() {
             { userBasketId: 3, productId: 11, quantity: 2 },
         ],
     });
-
-    console.log('Seed completed successfully!');
 }
 
 seed();

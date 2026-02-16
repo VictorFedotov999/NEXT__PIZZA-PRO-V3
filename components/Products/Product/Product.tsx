@@ -1,6 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { ProductBtnConfigurate } from './ProductBtnConfigurate/ProductBtnConfigurate';
+
+import { product } from '../../../prisma/constans';
+import { ProductBtnAdd } from './ProductBtnAdd/ProductBtnAdd';
 
 type Props = {
     id: number;
@@ -22,7 +23,8 @@ export const ProductItem = ({ id, title, description, imageUrl, price }: Props) 
                     <p className='item-price'>
                         от <span className='item-price_bold'> {price} ₽</span>
                     </p>
-                    <ProductBtnConfigurate />
+
+                    <ProductBtnAdd />
                 </div>
             </div>
         </Link>

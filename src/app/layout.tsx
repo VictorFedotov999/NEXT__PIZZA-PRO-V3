@@ -1,4 +1,4 @@
-import '../scss/style.scss';
+import '../../style/scss/style.scss';
 import type { Metadata } from 'next';
 import { Nunito } from 'next/font/google';
 import { Header } from '../../components/Header/Header';

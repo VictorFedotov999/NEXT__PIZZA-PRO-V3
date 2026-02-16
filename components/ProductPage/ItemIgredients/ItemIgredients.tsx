@@ -2,10 +2,16 @@
 
 import React from 'react';
 
-const ItemIgredients = ({ ingredients }) => {
+import { Ingredient } from '@prisma/client';
+
+type PropsType = {
+    ingredients: Ingredient[];
+};
+
+const ItemIgredients = ({ ingredients }: PropsType) => {
     const [igredientActive, setIgredientActive] = React.useState(0);
 
-    const onClickIgredient = (index) => {
+    const onClickIgredient = (index: number) => {
         setIgredientActive(index);
     };
     if (ingredients.length > 0) {
@@ -14,7 +20,7 @@ const ItemIgredients = ({ ingredients }) => {
                 <div className='product__info-igredients'>
                     <h1 className='product__info-igredients-title'>Ингредиенты</h1>
                     <div className='product__info-items'>
-                        {ingredients.map((ingredient, index) => (
+                        {ingredients.map((ingredient, index: number) => (
                             <div
                                 key={ingredient.id}
                                 onClick={() => onClickIgredient(index)}

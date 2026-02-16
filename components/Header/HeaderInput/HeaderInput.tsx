@@ -12,7 +12,6 @@ export const HeaderInput = () => {
     const [focused, setFocused] = React.useState(false);
     const [products, setProducts] = React.useState<Product[]>([]);
     const ref = React.useRef(null);
-    console.log(ref);
 
     useClickAway(ref, () => {
         setFocused(false);
