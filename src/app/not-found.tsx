@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import NotFounImg from '../public/not-find/404.png';
-
-export const NotFound = () => {
+import notFoundImages from '../../public/not-find/notFound.png';
+import Link from 'next/link';
+export default function NotFound() {
     return (
         <>
             <section className='not__found'>
@@ -12,10 +12,12 @@ export const NotFound = () => {
                             <p className='not__found-text'>
                                 Проверьте корректность введённого адреса или повторите попытку позже
                             </p>
+
                             <div className='not__found-btns'>
-                                <button className='not__found-glaw'>
-                                    <div className=''>
+                                <Link href='/'>
+                                    <button className='not__found-glaw'>
                                         <svg
+                                            className='not__found-glaw-svg'
                                             width='16'
                                             height='14'
                                             viewBox='0 0 16 14'
@@ -25,30 +27,30 @@ export const NotFound = () => {
                                             <path
                                                 d='M14.7144 6.9939L1.00007 6.9939'
                                                 stroke='#FE5F00'
-                                                stroke-width='2'
-                                                stroke-linecap='round'
-                                                stroke-linejoin='round'
+                                                strokeWidth='2'
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
                                             />
                                             <path
                                                 d='M7 12.988L1 6.99396L7 0.999878'
                                                 stroke='#FE5F00'
-                                                stroke-width='2'
-                                                stroke-linecap='round'
-                                                stroke-linejoin='round'
+                                                strokeWidth='2'
+                                                strokeLinecap='round'
+                                                strokeLinejoin='round'
                                             />
                                         </svg>
-                                    </div>
-                                    На главную
-                                </button>
+                                        На главную
+                                    </button>
+                                </Link>
                                 <button className='not__found-obnow'>Обновить</button>
                             </div>
                         </div>
                         <div className='not-found-img'>
-                            <Image src={NotFounImg} />
+                            <Image src={notFoundImages} alt='no-found' width={350} height={300} />
                         </div>
                     </div>
                 </div>
             </section>
         </>
     );
-};
+}

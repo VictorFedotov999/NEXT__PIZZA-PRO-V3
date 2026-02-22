@@ -2,8 +2,9 @@
 import React from 'react';
 import { ProductItem } from './Product/Product';
 import { Api } from '../../services/api-client';
-import { useSearchParams } from 'next/navigation';
+import { notFound, useSearchParams } from 'next/navigation';
 import { Product } from '@prisma/client';
+import { ProductSkeleton } from '../Skeletons/ProductSkeleton';
 
 export const Products = () => {
     const searchParams = useSearchParams();
@@ -12,29 +13,41 @@ export const Products = () => {
     const ingredients = searchParams.get('ingredients') || '';
     const size = searchParams.get('size') || '';
     const type = searchParams.get('type') || '';
+
+    const limitProduct = 12;
+    const skeletonProduct = Array(limitProduct).fill(0);
+
     const [products, setProducts] = React.useState<Product[]>([]);
+    const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     React.useEffect(() => {
-        Api.CategoryProduct(category, sort, ingredients, size, type).then((item) =>
-            setProducts(item),
-        );
+        setIsLoading(true);
+        Api.CategoryProduct(category, sort, ingredients, size, type)
+            .then((item) => {
+                setProducts(item);
+                setIsLoading(false);
+            })
+            .catch((error) => console.log('error:', error));
     }, [category, sort, ingredients, size, type]);
 
+    if (isLoading) {
+        return (
+            <div className='items'>
+                {skeletonProduct.map((_, index: number) => (
+                    <ProductSkeleton key={`${_}-${index}`} />
+                ))}
+                ;
+            </div>
+        );
+    }
     if (products.length === 0) {
-        return 'skeleton';
+        return 'Ничего не найдено';
     }
 
     return (
         <div className='items '>
             {products.map((product, index) => (
-                <ProductItem
-                    key={product.id}
-                    title={product.title}
-                    description={product.description}
-                    imageUrl={product.imageUrl}
-                    id={product.id}
-                    price={product.price}
-                />
+                <ProductItem product={product} key={product.id} />
             ))}
         </div>
     );

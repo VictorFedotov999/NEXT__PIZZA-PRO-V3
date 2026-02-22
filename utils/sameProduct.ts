@@ -1,11 +1,13 @@
+import { INewProduct } from '@/store/BasketClientStore/BasketClientType';
+
 interface ISameProduct {
-    products: any;
-    newProduct: any;
+    products: INewProduct[];
+    newProduct: INewProduct;
 }
 
-const sameProduct = ({ products, newProduct }: ISameProduct) => {
+export const sameProductFunc = (products: INewProduct, newProduct: INewProduct) => {
     const sameProduct = products.find(
-        (product) =>
+        (product: INewProduct) =>
             product.id === newProduct.id &&
             product.size === newProduct.size &&
             product.type === newProduct.type,

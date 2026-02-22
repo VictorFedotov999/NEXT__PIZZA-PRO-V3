@@ -5,15 +5,24 @@ import { TypeOption } from '@prisma/client';
 import { FilterTypeItem } from '../FilterTypeItem/FilterTypeItem';
 import { getTypes } from '../../../services/types';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { filtersSkeleton } from '../../../utils/filtersSkeleton';
+import { activeCheckbox } from '../../../utils/activeCheckbox';
 
 export const FilterType = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [types, setTypes] = React.useState([]);
+    const [types, setTypes] = React.useState<TypeOption[]>([]);
     const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
-    console.log();
+    const [isLoading, setIsLoading] = React.useState<Boolean>(true);
+
     React.useEffect(() => {
-        getTypes().then((data) => setTypes(data));
+        setIsLoading(true);
+        getTypes()
+            .then((data) => {
+                setTypes(data);
+                setIsLoading(false);
+            })
+            .catch((error) => console.log(error)).finally;
     }, []);
 
     React.useEffect(() => {
@@ -28,14 +37,17 @@ export const FilterType = () => {
         router.push(`/?${params.toString()}`);
     }, [selectedIds]);
 
+    if (isLoading) {
+        return filtersSkeleton(2, 'Тип:', 150, 28);
+    }
+
     const handleToggle = (type: TypeOption) => {
-        setSelectedIds((prev) =>
-            prev.includes(type.type) ? prev.filter((t) => t !== type.type) : [...prev, type.type],
-        );
+        activeCheckbox(type.type.toString(), setSelectedIds);
     };
+
     return (
         <>
-            <div className='filter__ingredients-title'>Тип:</div>
+            <div className='filter__title'>Тип:</div>
             <div className='filter__type'>
                 <ul className='filter__type-items'>
                     {types.map((type: TypeOption) => (

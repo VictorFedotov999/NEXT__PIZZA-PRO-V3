@@ -45,7 +45,13 @@ export const Error = () => {
                             </div>
                         </div>
                         <div className='not__found-img'>
-                            <Image className='not__found-error' src={ErrorImg} />
+                            <Image
+                                className='not__found-error'
+                                src={ErrorImg}
+                                alt='notFound'
+                                width={100}
+                                height={100}
+                            />
                         </div>
                     </div>
                 </div>

@@ -1,19 +1,12 @@
-'use client';
+import { SizeOption } from '@prisma/client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
+interface IProps {
+    size: SizeOption;
+    checked: boolean;
+    onChange: () => void;
+}
 
-import React from 'react';
-
-// type PropsType = {
-//     size: sizeType;
-// };
-
-// type sizeType = {
-//     id: number;
-//     size: number;
-// };
-
-export const FilterSizeItem = ({ size, checked, onChange }) => {
+export const FilterSizeItem = ({ size, checked, onChange }: IProps) => {
     return (
         <>
             <li className='filter__type-item'>

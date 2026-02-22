@@ -1,7 +1,8 @@
 import { product } from './../../../prisma/constans';
 import { create, StateCreator } from 'zustand';
-import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-import { IInitialState, INewProduct, IUseProductBasketClientState } from './BasketClientType';
+import { devtools } from 'zustand/middleware';
+import { IInitialState, IUseProductBasketClientState } from './BasketClientType';
+import { sameProductFunc } from '../../../utils/sameProduct';
 
 const initialState: IInitialState = {
     products: [],
@@ -14,12 +15,7 @@ const ProductBasketClientStore: StateCreator<IUseProductBasketClientState> = (se
     addProduct: (newProduct) => {
         const { products } = get();
 
-        const sameProduct = products.find(
-            (product) =>
-                product.id === newProduct.id &&
-                product.size === newProduct.size &&
-                product.type === newProduct.type,
-        );
+        const sameProduct = sameProductFunc(products, newProduct);
 
         if (sameProduct) {
             set((state) => ({

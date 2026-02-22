@@ -8,16 +8,20 @@ import ItemSizes from '../ItemSizes/ItemSizes';
 import ItemTitle from '../ItemTitle/ItemTitle';
 import ItemType from '../ItemType/ItemType';
 
-import { Product, SizeOption, TypeOption, Ingredient } from '@prisma/client';
+import { SizeOption, TypeOption, Ingredient } from '@prisma/client';
 import { addProduct } from '@/store/BasketClientStore/BasketClientSelectors';
-type ProductInfoType = {
-    product: Product;
+import { addProductBasket } from '../../../utils/addProductBasket';
+import { IBasketProduct } from '@/store/BasketClientStore/BasketClientType';
+import { FullProductType } from '../../../sharedType/type';
+
+interface IProductInfo {
+    product: FullProductType;
     sizes: SizeOption[];
     sizeOptions: SizeOption[];
     types: TypeOption[];
     typeOptions: TypeOption[];
     ingredients: Ingredient[];
-};
+}
 
 export const ProductInfo = ({
     product,
@@ -26,7 +30,7 @@ export const ProductInfo = ({
     types,
     typeOptions,
     ingredients,
-}: ProductInfoType) => {
+}: IProductInfo) => {
     const [sizeActive, setSizeAcitve] = React.useState(0);
     const [typeActive, setTypeActive] = React.useState(0);
     const [igredientActive, setIgredientActive] = React.useState(0);
@@ -35,18 +39,15 @@ export const ProductInfo = ({
     const typeCurrent = types.map((type) => type.type);
 
     const onClickAddProduct = () => {
-        const newProduct = {
-            id: product.id,
-            title: product.title,
-            imageUrl: product.imageUrl,
-            size: sizeCurrent[sizeActive],
-            type: typeCurrent[typeActive],
-            price: product.price,
-            count: 1,
-        };
-        addProduct(newProduct);
+        addProductBasket({
+            product,
+            func: addProduct,
+            sizeCurrent,
+            sizeActive,
+            typeCurrent,
+            typeActive,
+        });
     };
-
     return (
         <>
             <ItemImg product={product} />

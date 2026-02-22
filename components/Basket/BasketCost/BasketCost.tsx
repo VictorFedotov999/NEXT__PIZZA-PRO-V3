@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BasketCostBtn } from './BasketCostBtn';
+import { BasketSum } from '../BasketSum/BasketSum';
 
 interface IProps {
     onClickBasket: (open: boolean) => void;
@@ -11,14 +12,7 @@ export const BasketCost = ({ onClickBasket, totalCost }: IProps) => {
         <>
             <div className='basket__bottom'>
                 <div className='basket__bottom__inner'>
-                    <div className='basket__sum'>
-                        <h3 className='basket__sum-text'>Итого:</h3>
-                        <h3 className='basket__sum-price'>{totalCost}₽</h3>
-                    </div>
-                    <div className='basket__sum'>
-                        <h3 className='basket__sum-text'>Налог 5%:</h3>
-                        <h3 className='basket__sum-price'>122 ₽</h3>
-                    </div>
+                    <BasketSum totalCost={totalCost} />
 
                     <Link href={'/order'} onClick={() => onClickBasket(false)}>
                         <BasketCostBtn />

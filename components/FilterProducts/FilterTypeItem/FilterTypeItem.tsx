@@ -1,13 +1,12 @@
-type PropsType = {
-    type: type;
-};
+import { TypeOption } from '@prisma/client';
 
-type type = {
-    id: number;
-    type: string;
-};
+interface IProps {
+    type: TypeOption;
+    checked: boolean;
+    onChange: () => void;
+}
 
-export const FilterTypeItem = ({ type, checked, onChange }: PropsType) => {
+export const FilterTypeItem = ({ type, checked, onChange }: IProps) => {
     return (
         <li className='filter__type-item'>
             <input

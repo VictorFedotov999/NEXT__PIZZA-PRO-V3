@@ -1,16 +1,39 @@
-import { INewProduct } from './../src/store/BasketClientStore/BasketClientType';
-import { product } from './../prisma/constans';
+import { IBasketProduct } from '@/store/BasketClientStore/BasketClientType';
 
-interface IPoduct {
-    id: number;
-    title: string;
-    imageUrl: string;
-    size: number;
-    type: string;
-    price: number;
-    count: number;
+interface IAddProductBasket {
+    product: IBasketProduct;
+    func: (basketProduct: IBasketProduct) => void;
+    sizeCurrent: Array<number>;
+    typeCurrent: Array<string>;
+    sizeActive: number;
+    typeActive: number;
 }
 
-interface IProps {
-    product: IPoduct;
+export const addProductBasket = ({
+    product,
+    func,
+    sizeCurrent,
+    sizeActive,
+    typeCurrent,
+    typeActive,
+}: IAddProductBasket): void => {
+    const basketProduct: IBasketProduct = {
+        id: product.id,
+        title: product.title,
+        imageUrl: product.imageUrl,
+        size: sizeCurrent[sizeActive],
+        type: typeCurrent[typeActive],
+        price: product.price,
+        count: 1,
+    };
+    func(basketProduct);
+};
+
+interface IremoveProductBasket {
+    product: IBasketProduct;
+    func: (product: IBasketProduct) => void;
 }
+
+export const removeProductBasket = ({ product, func }: IremoveProductBasket): void => {
+    func(product);
+};

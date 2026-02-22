@@ -1,4 +1,4 @@
-export interface INewProduct {
+export interface IBasketProduct {
     id: number;
     title: string;
     imageUrl: string;
@@ -9,13 +9,13 @@ export interface INewProduct {
 }
 
 export interface IActions {
-    addProduct: (newProduct: INewProduct) => void;
-    removeProduct: (newProduct: INewProduct) => void;
-    plusProduct: (newProduct: INewProduct) => void;
+    addProduct: (baksetProduct: IBasketProduct) => void;
+    removeProduct: (baksetProduct: IBasketProduct) => void;
+    plusProduct: (baksetProduct: IBasketProduct) => void;
 }
 
 export interface IInitialState {
-    products: INewProduct[];
+    products: IBasketProduct[];
     totalCost: number;
     productCount: number;
 }

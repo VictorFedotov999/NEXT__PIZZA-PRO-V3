@@ -4,6 +4,7 @@ export const BasketInfoBtnClouse = () => {
             <button className='basket__clouse'>
                 <div>
                     <svg
+                        className=''
                         width='20'
                         height='20'
                         viewBox='0 0 20 20'

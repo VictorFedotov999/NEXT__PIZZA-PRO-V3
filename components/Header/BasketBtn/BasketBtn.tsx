@@ -1,11 +1,8 @@
 'use client';
 
 import React from 'react';
-
-import { BasketSvg } from './BasketSvg';
+import { HeaderBtnInfo } from '../HeaderBtnInfo/HeaderBtnInfo';
 import { Basket } from '../../Basket/Basket';
-import { BasketProductEmpty } from '../../Basket/BasketProductEmpty/BasketProductEmpty';
-
 import {
     useProductBasketCost,
     useProductBasketCount,
@@ -23,11 +20,11 @@ export const BasketBtn = () => {
     return (
         <>
             <div className='header__basket'>
-                <button className='header__basket-btn' onClick={() => onClickBasket(true)}>
-                    <p className='header__basket-price'>{totalCost} ₽</p>
-                    <BasketSvg />
-                    <p className='header__basket-count'>{productsCount}</p>
-                </button>
+                <HeaderBtnInfo
+                    productsCount={productsCount}
+                    totalCost={totalCost}
+                    onClickBasket={onClickBasket}
+                />
 
                 <Basket openBasket={openBasket} onClickBasket={onClickBasket} />
             </div>

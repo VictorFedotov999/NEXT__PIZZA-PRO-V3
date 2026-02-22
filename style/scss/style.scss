@@ -13,6 +13,10 @@ a {
     color: inherit;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 .header {
     margin-top: 45px;
     padding-bottom: 40px;
@@ -317,17 +321,20 @@ a {
     @include flex-column;
     width: 244px;
 
-    &__title {
+    &__title-type {
         font-size: 22px;
         font-weight: 700;
-        margin-bottom: 30px;
+        padding-bottom: 30px;
+    }
+    &__title {
+        font-size: 16px;
+        font-weight: 700;
+        padding-bottom: 15px;
     }
 
     &__type,
     &__prices {
-        padding-bottom: 26px;
-        margin-bottom: 25px;
-        border-bottom: 1px solid #f6f6f6;
+        padding-bottom: 25px;
     }
 
     &__prices-title {
@@ -348,11 +355,9 @@ a {
 
     &__ingredients-title {
         font-weight: 700;
-        margin-bottom: 20px;
     }
 
     &__all {
-        margin: 20px 0 40px;
         font-size: 16px;
         color: $--orange-color;
         @include flex-center;
@@ -366,31 +371,59 @@ a {
         font-size: 16px;
     }
 }
+.filter {
+    // ... существующие стили
 
-// .filter__ingredients-list {
-//     max-height: 215px; /* или любая другая высота */
-//     overflow-y: auto; /* вертикальный скролл */
-//     padding-right: 8px; /* чтобы не прилипал к краю */
-// }
+    &__type {
+        padding-bottom: 25px;
 
-.filter__ingredients-list::-webkit-scrollbar {
-    width: 6px;
+        &--scroll {
+            max-height: 200px; // регулируйте высоту по необходимости
+            overflow-y: auto;
+            padding-right: 10px; // место для скроллбара
+
+            // Стилизация скроллбара (опционально)
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $--orange-color;
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: darken($--orange-color, 10%);
+            }
+        }
+    }
+
+    &__type-items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__all {
+        font-size: 16px;
+        color: $--orange-color;
+        @include flex-center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px 0;
+        width: 100%;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
-
-.filter__ingredients-list::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.filter__ingredients-list::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-.filter__ingredients-list::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
 .items {
     width: 955px;
     gap: 50px;
@@ -417,10 +450,15 @@ a {
     }
 
     &-img {
-        width: 285px;
-        height: 260px;
+        width: 240px;
+        height: 240px;
+        margin: 0 auto;
     }
 
+    &-bg {
+        background-color: #fff7ee;
+        padding: 5px 0;
+    }
     &-title {
         font-size: 22px;
         font-weight: 700;
@@ -676,8 +714,7 @@ a {
 // .basket {
 //     display: none;
 // }
-.basket__item-empty {
-}
+
 .order {
     .title {
         font-size: 36px;
@@ -1002,6 +1039,12 @@ a {
         border-radius: 15px;
         @include button-outline-orange;
         font-weight: 700;
+        &:hover {
+            svg * {
+                stroke: #fff;
+                transition: all 0.3s;
+            }
+        }
     }
 
     &-obnow {
@@ -1011,12 +1054,42 @@ a {
         border-radius: 15px;
         font-weight: 700;
         cursor: pointer;
+        &:hover {
+            background-color: #c7c7c7;
+            color: #fff;
+            transition: all 0.3s;
+        }
     }
 
     &-error {
         width: 342px;
         height: 392px;
     }
+}
+
+.basket_product-delete {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+    opacity: 0.4;
+    &:hover {
+        opacity: 1;
+        transition: 0.3s;
+    }
+}
+
+.basket__item__price {
+    margin-left: 60px;
+}
+
+.filter__type-item-skeleton + .filter__type-item-skeleton {
+    padding-top: 12px;
+}
+
+.filter__type-item {
+    padding-bottom: 10px !important;
+    margin-bottom: 0px;
 }
 
 // //darkTheme
@@ -1188,7 +1261,7 @@ a {
 //     color: $--dt-text-primary;
 // }
 
-// .dark-theme .filter__type,
+// .dark-theme .,
 // .dark-theme .filter__prices {
 //     border-bottom: 1px solid $--dt-border-light;
 // }
