@@ -78,3 +78,13 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(products);
 }
+
+export async function POST(req: NextRequest) {
+    const data = await req.json();
+
+    const product = await prisma.product.create({
+        data,
+    });
+
+    return NextResponse.json(product);
+}

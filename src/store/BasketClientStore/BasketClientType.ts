@@ -1,23 +1,39 @@
-export interface IBasketProduct {
-    id: number;
-    title: string;
-    imageUrl: string;
-    size: number;
-    type: string;
-    price: number;
-    count: number;
-}
+import { product } from './../../../prisma/constans';
+import { Ingredient, Product, SizeOption, TypeOption, UserBasket } from '@prisma/client';
 
 export interface IActions {
-    addProduct: (baksetProduct: IBasketProduct) => void;
-    removeProduct: (baksetProduct: IBasketProduct) => void;
-    plusProduct: (baksetProduct: IBasketProduct) => void;
+    fetchCartItems: () => void;
 }
 
 export interface IInitialState {
-    products: IBasketProduct[];
+    items: IBasketItemsStore[];
+    error: boolean;
+    loading: boolean;
     totalCost: number;
     productCount: number;
 }
 
 export interface IUseProductBasketClientState extends IInitialState, IActions {}
+
+// полный ответ со всеми полями
+export interface IBasketProduct extends UserBasket {
+    product: IProduct;
+}
+//что будет в стайте после обработки
+export interface IBasketItemsStore {
+    id: number;
+    quantity: number;
+    title: string;
+    imageUrl: string;
+    price: number;
+    pizzaSize?: number | null;
+    pizzaType?: number | null;
+    ingredients: Array<{ name: string; price: number }>;
+}
+
+//продукт с полями
+export interface IProduct extends Product {
+    ingredient: Ingredient[];
+    sizeOption: SizeOption[];
+    typeOption: TypeOption[];
+}

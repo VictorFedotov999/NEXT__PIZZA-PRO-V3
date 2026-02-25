@@ -1,27 +1,19 @@
-import { INewProduct } from '@/store/BasketClientStore/BasketClientType';
 import { BasketDeleteProduct } from '../BasketDeleteProduct/BasketDeleteProduct';
 
-interface BasketProductCount {
-    product: INewProduct;
-    onClickPlusProduct: () => void;
-    onClickremoveProduct: () => void;
+interface IProps {
+    quantity: number;
+    price: number;
 }
 
-export const BasketProductCount = ({
-    product,
-    onClickPlusProduct,
-    onClickremoveProduct,
-}: BasketProductCount) => {
+export const BasketProductCount = ({ product }: IProps) => {
     return (
         <>
             <div className='basket__item__count'>
                 <button className='basket__item__minus'>-</button>
-                <h3 className='basket__item__number'>{product.count}</h3>
-                <button className='basket__item__plus' onClick={onClickPlusProduct}>
-                    +
-                </button>
+                <h3 className='basket__item__number'>{product.quantity}</h3>
+                <button className='basket__item__plus'>+</button>
                 <h3 className='basket__item__price'>{product.price} ₽</h3>
-                <div onClick={onClickremoveProduct}>
+                <div>
                     <BasketDeleteProduct />
                 </div>
             </div>

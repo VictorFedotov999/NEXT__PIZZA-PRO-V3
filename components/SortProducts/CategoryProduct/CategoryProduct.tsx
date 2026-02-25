@@ -1,23 +1,22 @@
 'use client';
 import React from 'react';
-import { getCategorys } from '../../../services/categorys';
+
 import { useRouter, useSearchParams } from 'next/navigation';
 import { CategorySkeleton } from '../../Skeletons/CategorySkeleton';
-import { error } from 'console';
 
-type PropsType = {};
+import { getCategorys } from '../../../services/categorys';
 
-type CategoryType = {
+interface ICategoryType {
     id: number;
     title: string;
-};
+}
 
-export const CategoryProduct: React.FC<PropsType> = () => {
+export const CategoryProduct = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
 
     const currentCategory = searchParams.get('category') || '0';
-    const [categorys, setCategorys] = React.useState<CategoryType[]>([]);
+    const [categorys, setCategorys] = React.useState<ICategoryType[]>([]);
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     React.useEffect(() => {
@@ -46,7 +45,7 @@ export const CategoryProduct: React.FC<PropsType> = () => {
 
     return (
         <div className='product__categorie-inner'>
-            {categorys.map((categor: CategoryType, index: number) => (
+            {categorys.map((categor: ICategoryType, index: number) => (
                 <div
                     key={index}
                     onClick={() => onClickCategory(index)}

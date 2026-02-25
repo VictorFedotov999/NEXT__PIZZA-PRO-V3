@@ -12,110 +12,85 @@ enum UserRole {
     USER
 }
 
-model UserAuth {
-    id       Int    @id @default(autoincrement())
-    email    String
-    password String
-
-    userId Int  @unique
-    user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
 model User {
-    id         Int      @id @default(autoincrement())
+    id         Int          @id @default(autoincrement())
     surname    String
     name       String
     patronymic String?
     role       UserRole
-
-    userAuth UserAuth?
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    UserBasket UserBasket[]
 }
 
 model UserBasket {
+    id            Int         @id @default(autoincrement())
+    quantity      Int         @default(1)
+    userId        Int
+    user          User        @relation(fields: [userId], references: [id])
+    productItemId Int
+    productItem   ProductItem @relation(fields: [productItemId], references: [id])
 }
 
-// model UserBasket {
-//     id Int @id @default(autoincrement())
+model Category {
+    id       Int       @id @default(autoincrement())
+    title    String    @unique
+    products Product[]
+}
 
-//     userId Int  @unique
-//     user   User @relation(fields: [userId], references: [id])
+model Product {
+    id          Int    @id @default(autoincrement())
+    title       String
+    description String
+    imageUrl    String
+    rating      Int
 
-//     basketItems BasketItem[]
-// }
+    quantity     Int           @default(1)
+    categoryId   Int
+    category     Category      @relation(fields: [categoryId], references: [id])
+    Ingredient   Ingredient[]
+    productItems ProductItem[]
+}
 
-// model BasketItem {
-//     id       Int @id @default(autoincrement())
-//     quantity Int
+model ProductItem {
+    id         Int          @id @default(autoincrement())
+    price      Int
+    productId  Int
+    product    Product      @relation(fields: [productId], references: [id])
+    UserBasket UserBasket[]
+    sizeId     Int?
+    size       SizeOption?  @relation(fields: [sizeId], references: [id])
+    typeId     Int?
+    type       TypeOption?  @relation(fields: [typeId], references: [id])
+}
 
-//     userBasketId Int?
-//     userBasket   UserBasket? @relation(fields: [userBasketId], references: [id])
+model Ingredient {
+    id        Int     @id @default(autoincrement())
+    img       String
+    title     String
+    price     Int
+    productId Int
+    product   Product @relation(fields: [productId], references: [id])
+}
 
-//     productId Int?
-//     product   Product? @relation(fields: [productId], references: [id])
+model SizeOption {
+    id           Int           @id @default(autoincrement())
+    size         Int
+    price        Int?
+    productItems ProductItem[]
+}
 
-//     @@unique([userBasketId, productId])
-// }
+model TypeOption {
+    id           Int           @id @default(autoincrement())
+    type         String
+    price        Int?
+    productItems ProductItem[]
+}
 
-// model Product {
-//     id          Int      @id @default(autoincrement())
-//     title       String
-//     description String
-//     imageUrl    String
-//     rating      Int
-//     price       Int
-//     categoryId  Int
-//     category    Category @relation(fields: [categoryId], references: [id])
+model Sorting {
+    id    Int    @id @default(autoincrement())
+    title String
+}
 
-//     BasketItems BasketItem[]
-//     sizeOption  SizeOption[]
-//     typeOption  TypeOption[]
-//     ingredient  Ingredient[]
-// }
-
-// model Ingredient {
-//     id    Int    @id @default(autoincrement())
-//     img   String
-//     title String
-//     price Int
-
-//     productId Int
-//     product   Product @relation(fields: [productId], references: [id])
-// }
-
-// model SizeOption {
-//     id    Int  @id @default(autoincrement())
-//     size  Int
-//     price Int?
-
-//     productId Int
-//     product   Product @relation(fields: [productId], references: [id])
-// }
-
-// model TypeOption {
-//     id    Int    @id @default(autoincrement())
-//     type  String
-//     price Int?
-
-//     productId Int
-//     product   Product @relation(fields: [productId], references: [id])
-// }
-
-// model Category {
-//     id    Int    @id @default(autoincrement())
-//     title String @unique
-
-//     products Product[]
-// }
-
-// model Sorting {
-//     id    Int    @id @default(autoincrement())
-//     title String @unique
-// }
-
-// model Filter {
-//     id    Int    @id @default(autoincrement())
-//     title String
-// }
+model Filter {
+    id    Int    @id @default(autoincrement())
+    title String
+}

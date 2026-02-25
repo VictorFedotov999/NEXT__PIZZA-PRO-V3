@@ -1,42 +1,24 @@
 'use client';
 
-import { plusProduct, removeProduct } from '@/store/BasketClientStore/BasketClientSelectors';
 import { BasketProductInfo } from '../BasketProductInfo/BasketProductInfo';
 import { BasketProductCount } from '../BasketProductCount/BasketProductCount';
-import { addProductBasket, removeProductBasket } from '../../../utils/addProductBasket';
-import { IBasketProduct } from '@/store/BasketClientStore/BasketClientType';
+import { addProductBasket, removeProductBasket } from '../../../lib/add-Product-Basket';
+import { IBasketItemsStore, IBasketProduct } from '@/store/BasketClientStore/BasketClientType';
 
 interface IProps {
-    product: IBasketProduct;
+    product: IBasketItemsStore;
 }
 
 export const BasketProduct = ({ product }: IProps) => {
-    const onClickremoveProduct = () => {
-        removeProductBasket({
-            product,
-            func: removeProduct,
-        });
-    };
-
-    const onClickPlusProduct = () => {
-        removeProductBasket({
-            product,
-            func: plusProduct,
-        });
-    };
-
+    const { imageUrl, title } = product;
     return (
         <>
             <div className='basket__item'>
-                <img className='basket__item-img' src={product.imageUrl} alt='' />
+                <img className='basket__item-img' src={imageUrl} alt='photoProduct' />
 
                 <div className='basket__item__info'>
                     <BasketProductInfo product={product} />
-                    <BasketProductCount
-                        product={product}
-                        onClickPlusProduct={onClickPlusProduct}
-                        onClickremoveProduct={onClickremoveProduct}
-                    />
+                    <BasketProductCount product={product} />
                 </div>
             </div>
         </>

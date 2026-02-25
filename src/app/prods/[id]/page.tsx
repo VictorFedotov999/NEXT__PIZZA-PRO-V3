@@ -1,6 +1,5 @@
 import { ProductInfo } from '../../../../components/ProductPage/ProductInfo/ProductInfo';
 import { prisma } from '../../../../prisma/prisma-client';
-import { Ingredient } from '@prisma/client';
 
 type PropsType = {
     params: Promise<{
@@ -33,8 +32,7 @@ const ProductPage = async ({ params }: PropsType) => {
             ingredient: true,
         },
     });
-    console.log('FullProduct', product);
-
+    console.log('Product со всеми нужными полями', product);
     const productId = product.id;
     const sizes = product.sizeOption;
     const types = product.typeOption;

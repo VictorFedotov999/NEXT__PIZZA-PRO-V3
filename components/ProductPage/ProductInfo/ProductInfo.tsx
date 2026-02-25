@@ -9,13 +9,10 @@ import ItemTitle from '../ItemTitle/ItemTitle';
 import ItemType from '../ItemType/ItemType';
 
 import { SizeOption, TypeOption, Ingredient } from '@prisma/client';
-import { addProduct } from '@/store/BasketClientStore/BasketClientSelectors';
-import { addProductBasket } from '../../../utils/addProductBasket';
-import { IBasketProduct } from '@/store/BasketClientStore/BasketClientType';
-import { FullProductType } from '../../../sharedType/type';
+import { IProduct } from '@/store/BasketClientStore/BasketClientType';
 
 interface IProductInfo {
-    product: FullProductType;
+    product: IProduct;
     sizes: SizeOption[];
     sizeOptions: SizeOption[];
     types: TypeOption[];
@@ -33,21 +30,23 @@ export const ProductInfo = ({
 }: IProductInfo) => {
     const [sizeActive, setSizeAcitve] = React.useState(0);
     const [typeActive, setTypeActive] = React.useState(0);
-    const [igredientActive, setIgredientActive] = React.useState(0);
+    const [selectedIngredients, setSelectedIngredients] = React.useState<Ingredient[]>([]);
 
     const sizeCurrent = sizes.map((size) => size.size);
     const typeCurrent = types.map((type) => type.type);
 
     const onClickAddProduct = () => {
-        addProductBasket({
-            product,
-            func: addProduct,
-            sizeCurrent,
-            sizeActive,
-            typeCurrent,
-            typeActive,
-        });
+        const addProduct = {
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            ingredients: selectedIngredients,
+            pizzaSize: sizeCurrent[sizeActive],
+            pizzaType: typeCurrent[typeActive],
+        };
+        console.log(addProduct);
     };
+
     return (
         <>
             <ItemImg product={product} />
@@ -72,8 +71,8 @@ export const ProductInfo = ({
 
                 <ItemIgredients
                     ingredients={ingredients}
-                    igredientActive={igredientActive}
-                    setIgredientActive={setIgredientActive}
+                    selectedIngredients={selectedIngredients}
+                    setSelectedIngredients={setSelectedIngredients}
                 />
 
                 <div onClick={onClickAddProduct}>

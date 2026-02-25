@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { FilterIngredientItem } from '../FilterIngredientItem/FilterIngredientItem';
-import { getIngredients } from '../../../services/ingredients';
+import { getIngredients } from '../../../services/productInfo';
 import { Ingredient } from '@prisma/client';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { filtersSkeleton } from '../../../utils/filtersSkeleton';
-import { activeCheckbox } from '../../../utils/activeCheckbox';
+import { filtersSkeleton } from '../../../lib/filters-Skeleton';
+import { activeCheckbox } from '../../../lib/active-Checkbox';
 
 export const FilterIngredients = () => {
     const router = useRouter();

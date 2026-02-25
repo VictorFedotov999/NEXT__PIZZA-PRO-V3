@@ -6,8 +6,8 @@ import React, { useRef } from 'react';
 
 export const ProfileBtn = () => {
     const settings = ['Настройки', 'Заказы', 'Выйти'];
-    const [openPopup, setOpenPopup] = React.useState(false);
-    const [setting, setSetting] = React.useState(0);
+    const [openPopup, setOpenPopup] = React.useState<boolean>(false);
+    const [setting, setSetting] = React.useState<number>(0);
 
     const onClickOpenPopup = () => {
         setOpenPopup(true);

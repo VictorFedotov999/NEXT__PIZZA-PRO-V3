@@ -4,14 +4,15 @@ import React from 'react';
 import { useClickAway } from 'react-use';
 import InputPopop from './InputPopop';
 import { Api } from '../../../services/api-client';
-import { Product } from '@prisma/client';
 import { debounce } from 'lodash';
+import { IProduct } from '../../../sharedType/type';
 
 export const HeaderInput = () => {
     const [searchQuery, setSearQuery] = React.useState<string>('');
-    const [focused, setFocused] = React.useState(false);
-    const [products, setProducts] = React.useState<Product[]>([]);
+    const [focused, setFocused] = React.useState<boolean>(false);
+    const [products, setProducts] = React.useState<IProduct[]>([]);
     const ref = React.useRef(null);
+    console.log(products, 'ffffffffff');
 
     useClickAway(ref, () => {
         setFocused(false);

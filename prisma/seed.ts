@@ -2,6 +2,16 @@ import { categories, product, ingredients, filters, sorting } from './constans';
 import { prisma } from './prisma-client';
 
 async function seed() {
+    await prisma.userBasket.deleteMany(); // ← очистка корзины
+    await prisma.ingredient.deleteMany();
+    await prisma.sizeOption.deleteMany();
+    await prisma.typeOption.deleteMany();
+    await prisma.product.deleteMany();
+    await prisma.user.deleteMany();
+    await prisma.category.deleteMany();
+    await prisma.sorting.deleteMany();
+    await prisma.filter.deleteMany();
+
     await prisma.category.createMany({
         data: categories,
     });
@@ -22,13 +32,15 @@ async function seed() {
             { name: 'Admin', surname: 'Adminov', patronymic: null, role: 'ADMIN' },
         ],
     });
-
-    await prisma.userBasket.createMany({
-        data: [{ userId: 1 }, { userId: 2 }, { userId: 3 }, { userId: 4 }],
-    });
-
     await prisma.product.createMany({
         data: product,
+    });
+    await prisma.userBasket.createMany({
+        data: [
+            { userId: 1, productId: 2, quantity: 1 },
+            { userId: 1, productId: 3, quantity: 1 },
+            { userId: 1, productId: 4, quantity: 1 },
+        ],
     });
 
     await prisma.sizeOption.createMany({
@@ -37,7 +49,7 @@ async function seed() {
             { productId: 1, size: 35, price: 450 },
 
             // Пицца с хреном - 2 размера
-            { productId: 2, size: 25, price: 500 },
+            { productId: 2, size: 20, price: 500 },
             { productId: 2, size: 35, price: 700 },
 
             // Мясная - 3 размера
@@ -272,18 +284,6 @@ async function seed() {
             },
 
             // Пепперони - нет ингредиентов
-        ],
-    });
-
-    // Добавляем некоторые товары в корзины пользователей
-    await prisma.basketItem.createMany({
-        data: [
-            { userBasketId: 1, productId: 1, quantity: 2 },
-            { userBasketId: 1, productId: 3, quantity: 1 },
-            { userBasketId: 2, productId: 5, quantity: 1 },
-            { userBasketId: 2, productId: 7, quantity: 3 },
-            { userBasketId: 3, productId: 9, quantity: 1 },
-            { userBasketId: 3, productId: 11, quantity: 2 },
         ],
     });
 }

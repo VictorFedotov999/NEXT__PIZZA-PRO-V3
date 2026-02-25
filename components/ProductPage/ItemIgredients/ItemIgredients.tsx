@@ -1,28 +1,45 @@
 'use client';
 import { Ingredient } from '@prisma/client';
+import React from 'react';
 
 type PropsType = {
     ingredients: Ingredient[];
-    igredientActive: Number;
-    setIgredientActive: (index: number) => void;
+    selectedIngredients: Ingredient[]; //
+    setSelectedIngredients: (ingredients: Ingredient[]) => void;
 };
 
-const ItemIgredients = ({ ingredients, igredientActive, setIgredientActive }: PropsType) => {
-    const onClickIgredient = (index: number) => {
-        setIgredientActive(index);
+const ItemIgredients = ({
+    ingredients,
+    selectedIngredients,
+    setSelectedIngredients,
+}: PropsType) => {
+    const toggleIngredient = (ingredient: Ingredient) => {
+        const isSelected = selectedIngredients.some((item) => item.id === ingredient.id);
+
+        if (isSelected) {
+            setSelectedIngredients(selectedIngredients.filter((item) => item.id !== ingredient.id));
+        } else {
+            setSelectedIngredients([...selectedIngredients, ingredient]);
+        }
     };
+
+    const isIngredientSelected = (ingredientId: number) => {
+        return selectedIngredients.some((item) => item.id === ingredientId);
+    };
+
     if (ingredients.length > 0) {
         return (
             <>
                 <div className='product__info-igredients'>
                     <h1 className='product__info-igredients-title'>Ингредиенты</h1>
+
                     <div className='product__info-items'>
                         {ingredients.map((ingredient, index: number) => (
                             <div
                                 key={ingredient.id}
-                                onClick={() => onClickIgredient(index)}
+                                onClick={() => toggleIngredient(ingredient)}
                                 className={
-                                    igredientActive === index
+                                    isIngredientSelected(ingredient.id)
                                         ? 'product__info-item active '
                                         : 'product__info-item'
                                 }

@@ -1,5 +1,5 @@
 import { Product } from '@prisma/client';
-import { axionsInstatce } from './instance';
+import { API_PRODUCTS, axionsInstatce } from './instance';
 
 export const category = async (
     category: string,
@@ -8,7 +8,7 @@ export const category = async (
     size: string,
     type: string,
 ): Promise<Product[]> => {
-    const { data } = await axionsInstatce.get<Product[]>('/api/productss/', {
+    const { data } = await axionsInstatce.get<Product[]>(API_PRODUCTS, {
         params: { category, sort, ingredients, size, type },
     });
     return data;

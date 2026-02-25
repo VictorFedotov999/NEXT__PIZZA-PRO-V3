@@ -3,10 +3,10 @@
 import React from 'react';
 import { TypeOption } from '@prisma/client';
 import { FilterTypeItem } from '../FilterTypeItem/FilterTypeItem';
-import { getTypes } from '../../../services/types';
+import { getTypes } from '../../../services/productInfo';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { filtersSkeleton } from '../../../utils/filtersSkeleton';
-import { activeCheckbox } from '../../../utils/activeCheckbox';
+import { filtersSkeleton } from '../../../lib/filters-Skeleton';
+import { activeCheckbox } from '../../../lib/active-Checkbox';
 
 export const FilterType = () => {
     const router = useRouter();

@@ -3,15 +3,9 @@
 import React from 'react';
 import { HeaderBtnInfo } from '../HeaderBtnInfo/HeaderBtnInfo';
 import { Basket } from '../../Basket/Basket';
-import {
-    useProductBasketCost,
-    useProductBasketCount,
-} from '@/store/BasketClientStore/BasketClientSelectors';
 
 export const BasketBtn = () => {
-    const [openBasket, setOpenBasket] = React.useState(false);
-    const productsCount = useProductBasketCount();
-    const totalCost = useProductBasketCost();
+    const [openBasket, setOpenBasket] = React.useState<boolean>(false);
 
     const onClickBasket = (open: boolean) => {
         setOpenBasket(open);
@@ -20,11 +14,7 @@ export const BasketBtn = () => {
     return (
         <>
             <div className='header__basket'>
-                <HeaderBtnInfo
-                    productsCount={productsCount}
-                    totalCost={totalCost}
-                    onClickBasket={onClickBasket}
-                />
+                <HeaderBtnInfo onClickBasket={onClickBasket} />
 
                 <Basket openBasket={openBasket} onClickBasket={onClickBasket} />
             </div>

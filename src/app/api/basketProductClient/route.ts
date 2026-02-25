@@ -1,14 +1,20 @@
-import { SizeOption } from '@prisma/client';
 import { NextResponse } from 'next/server';
 import { prisma } from '../../../../prisma/prisma-client';
 
 export async function GET() {
-    const productBasket = await prisma.basketItem.findMany({
+    const productBasket = await prisma.userBasket.findMany({
         where: {
-            userBasketId: 1,
+            userId: 1,
         },
+
         include: {
-            product: {},
+            product: {
+                include: {
+                    sizeOption: true,
+                    typeOption: true,
+                    ingredient: true,
+                },
+            },
         },
     });
     return NextResponse.json(productBasket);

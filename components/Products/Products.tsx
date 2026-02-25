@@ -2,7 +2,7 @@
 import React from 'react';
 import { ProductItem } from './Product/Product';
 import { Api } from '../../services/api-client';
-import { notFound, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { Product } from '@prisma/client';
 import { ProductSkeleton } from '../Skeletons/ProductSkeleton';
 
