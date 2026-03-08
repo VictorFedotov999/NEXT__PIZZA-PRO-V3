@@ -7,12 +7,12 @@ export const ProductSkeleton = () => {
                 <Skeleton className='item-img ' circle width={240} height={240} />
 
                 <h1 className='item-title'>
-                    <Skeleton height={25} />
+                    <Skeleton width={260} height={25} />
                 </h1>
                 <p className='item-text'>
-                    <Skeleton />
-                    <Skeleton />
-                    <Skeleton />
+                    <Skeleton width={260} />
+                    <Skeleton width={260} />
+                    <Skeleton width={260} />
                 </p>
                 <div className='item-bottom'>
                     <p className='item-price'>

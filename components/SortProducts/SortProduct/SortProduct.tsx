@@ -1,11 +1,13 @@
 'use client';
 
 import React from 'react';
-import { SortProductSvg } from './SortProductSvg';
+import Image from 'next/image';
 import { useClickAway } from 'react-use';
 import { getSorts } from '../../../services/sorts';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Sorting } from '@prisma/client';
+
+import ChoiceProductIcon from '../../../public/choiceProduct/choiceProduct.svg';
 
 export const SortProduct = () => {
     const router = useRouter();
@@ -40,7 +42,13 @@ export const SortProduct = () => {
 
     return (
         <div className='sort__inner' ref={ref}>
-            <SortProductSvg />
+            <Image
+                className='sort__img'
+                src={ChoiceProductIcon}
+                width={20}
+                height={20}
+                alt='Choice-Icon'
+            />
             <p className='sort__title:' onClick={() => onClickPopup()}>
                 Сортировка:
             </p>

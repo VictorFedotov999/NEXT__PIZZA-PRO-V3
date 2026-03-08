@@ -15,6 +15,14 @@ export const removeProductItem = async (productId: number) => {
     return data;
 };
 
+export const clearBasket = async () => {
+    const { data } = await axionsInstatce.delete(API_BASKET_USER, {
+        data: { clear: true },
+    });
+
+    return data;
+};
+
 export const increaseProductCount = async (productId: number, count: number) => {
     const { data } = await axionsInstatce.patch(API_BASKET_USER, { productId, count });
     return data;

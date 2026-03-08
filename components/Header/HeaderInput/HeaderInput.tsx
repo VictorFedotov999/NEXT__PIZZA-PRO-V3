@@ -2,11 +2,13 @@
 
 import React from 'react';
 
-import InputPopop from './InputPopop';
 import { Api } from '../../../services/api-client';
 import { debounce } from 'lodash';
 import { useClickAway } from 'react-use';
 import { ProductIdType } from '../../../prisma/prismaType';
+import InputPopop from './InputPopop';
+import { InputSearch } from './InputSearch';
+import { ClearQueryBtn } from './ClearQueryBtn';
 
 export const HeaderInput = () => {
     const [searchQuery, setSearQuery] = React.useState<string>('');
@@ -37,23 +39,16 @@ export const HeaderInput = () => {
     return (
         <>
             <div className={focused ? 'black--font' : ''} ref={ref}>
-                <div className='header__search'>
-                    <input
-                        className='header__input'
-                        type=''
-                        placeholder='Поиск пиццы...'
-                        onFocus={() => setFocused(true)}
-                        value={searchQuery}
-                        onChange={(e) => setSearQuery(e.target.value)}
-                    />
-                </div>
-
-                <img
-                    onClick={onClickRemoveSearchQuery}
-                    className={searchQuery.length > 1 ? 'header__search-delete' : 'none'}
-                    src='../../deleteInpt.svg'
-                    alt=''
+                <InputSearch
+                    setFocused={setFocused}
+                    searchQuery={searchQuery}
+                    setSearQuery={setSearQuery}
                 />
+                {searchQuery.length >= 1 ? (
+                    <ClearQueryBtn onClickRemoveSearchQuery={onClickRemoveSearchQuery} />
+                ) : (
+                    ''
+                )}
 
                 {focused && <InputPopop products={products} setFocused={setFocused} />}
             </div>

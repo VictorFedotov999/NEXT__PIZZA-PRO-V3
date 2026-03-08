@@ -2,7 +2,7 @@
 
 import { BasketProductInfo } from '../BasketProductInfo/BasketProductInfo';
 import { BasketProductCount } from '../BasketProductCount/BasketProductCount';
-
+import Image from 'next/image';
 import { IBasketItemsStore } from '@/store/BasketClientStore/BasketClientType';
 
 interface IProps {
@@ -13,7 +13,7 @@ export const BasketProduct = ({ product }: IProps) => {
     return (
         <>
             <div className='basket__item'>
-                <img className='basket__item-img' src={product.imageUrl} alt='photoProduct' />
+                <Image src={product.imageUrl} width={50} height={50} alt='Product-Img' />
 
                 <div className='basket__item__info'>
                     <BasketProductInfo product={product} />

@@ -13,9 +13,8 @@ export const BasketInfo = ({ onClickBasket }: IProps) => {
                 <h3 className='basket__count'>
                     В корзине <span>{productCount} товара</span>
                 </h3>
-                <div onClick={() => onClickBasket(false)}>
-                    <BasketInfoBtnClouse />
-                </div>
+
+                <BasketInfoBtnClouse onClickBasket={onClickBasket} />
             </div>
         </>
     );

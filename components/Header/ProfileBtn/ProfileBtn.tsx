@@ -1,8 +1,10 @@
 'use client';
 
+import React from 'react';
+import Image from 'next/image';
 import { useClickAway } from 'react-use';
-import { IconSvg } from './IconSvg';
-import React, { useRef } from 'react';
+import ProfileIcon from '../../../public/header/headerBtnProfile.svg';
+import { ProfileBtnSvg } from './ProfileBtnSvg';
 
 export const ProfileBtn = () => {
     const settings = ['Настройки', 'Заказы', 'Выйти'];
@@ -18,18 +20,16 @@ export const ProfileBtn = () => {
         setOpenPopup(false);
     };
 
-    const ref = useRef(null);
+    const ref = React.useRef(null);
     useClickAway(ref, () => {
         setOpenPopup(false);
     });
     return (
         <>
             <div className='header__profile' ref={ref}>
-                <button className='header__profile-btn'>
-                    <IconSvg />
-                    <p className='header__profile-text' onClick={onClickOpenPopup}>
-                        Профиль
-                    </p>
+                <button className='header__profile-btn' onClick={onClickOpenPopup}>
+                    <ProfileBtnSvg />
+                    <p className='header__profile-text'>Профиль</p>
                 </button>
 
                 <div

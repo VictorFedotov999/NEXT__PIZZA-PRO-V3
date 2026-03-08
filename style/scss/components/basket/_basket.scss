@@ -1,0 +1,227 @@
+.basket {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 395px;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 1000;
+    box-shadow: 0px 3px 5px rgb(197, 195, 195, 0.5);
+
+    &.active {
+        display: block;
+    }
+
+    &__container {
+        height: 100%;
+        @include flex-column;
+    }
+
+    &__inner {
+        flex: 1;
+        @include flex-column;
+        min-height: 0;
+    }
+
+    &__content {
+        min-height: 0;
+        flex: 1;
+        @include flex-column;
+        overflow: hidden;
+    }
+
+    &__items {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 10px;
+        min-height: 0;
+    }
+
+    &__top {
+        @include flex-between;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    &__count {
+        font-size: 20px;
+        font-weight: 400;
+        margin: 20px 0;
+
+        span {
+            font-weight: 800;
+        }
+    }
+
+    &__item {
+        @include flex-center;
+        align-items: flex-start;
+        gap: 25px;
+        background-color: #fff;
+        width: 100%;
+        padding: 20px 26px 20px 20px;
+        margin-bottom: 10px;
+        border-radius: 15px;
+        box-shadow: 0px 3px 5px rgb(197, 195, 195, 0.5);
+
+        &-img {
+            width: 65px;
+            height: 65px;
+        }
+
+        &__info-title {
+            margin-bottom: 5px;
+        }
+
+        &__info-text {
+            font-size: 14px;
+            color: #a1a1a1;
+            padding-bottom: 12px;
+            max-width: 239px;
+            border-bottom: 1px solid #ededed;
+            margin-bottom: 12px;
+        }
+
+        &__count {
+            @include flex-center;
+        }
+
+        &__minus,
+        &__plus {
+            @include button-outline-orange;
+            font-size: 16px;
+            border-radius: 10px;
+            width: 30px;
+            height: 30px;
+        }
+
+        &__price {
+            margin-left: 50px;
+        }
+
+        &__number {
+            margin: 0 9px;
+        }
+    }
+
+    &__bottom {
+        background-color: #fff;
+        padding: 40px 35px 30px 40px;
+        margin-top: auto;
+    }
+
+    &__sum {
+        @include flex-between;
+        align-items: center;
+
+        &-text {
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        &-price {
+            font-size: 18px;
+        }
+    }
+
+    &__order {
+        @include flex-center;
+        gap: 20px;
+        justify-content: center;
+        @include button-orange;
+        width: 325px;
+        height: 55px;
+        border-radius: 18px;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+
+    &__item-empty {
+        @include flex-column;
+        align-items: center;
+        margin-top: 30vh;
+    }
+
+    &__empty {
+        &-img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 25px;
+        }
+
+        &-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        &-text {
+            width: 285px;
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 37px;
+            text-align: center;
+            color: #b1b1b1;
+            line-height: 20px;
+        }
+
+        &-button {
+            @include flex-center;
+            justify-content: center;
+            gap: 10px;
+            @include button-orange;
+            font-size: 16px;
+            width: 230px;
+            height: 55px;
+            border-radius: 18px;
+        }
+    }
+
+    &__clouse {
+        cursor: pointer;
+    }
+}
+
+.basket_product-delete {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+    opacity: 0.4;
+    &:hover {
+        opacity: 1;
+        transition: 0.3s;
+    }
+}
+
+.basket__item__minus:disabled {
+    opacity: 0.3;
+
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.item__count-btn:disabled {
+    opacity: 0.3;
+
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.skeleton-basket {
+    margin-bottom: 10px;
+}
+
+.basket__remove-btn {
+    cursor: pointer;
+}
+
+.ClouseSvg {
+    width: 35px;
+    height: 35px;
+    opacity: 0.3;
+    &:hover {
+        opacity: 1;
+        transition: all 0.5s;
+    }
+}

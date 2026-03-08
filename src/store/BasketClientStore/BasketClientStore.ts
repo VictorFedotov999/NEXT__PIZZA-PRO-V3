@@ -1,6 +1,6 @@
 import { create, StateCreator } from 'zustand';
 import { devtools } from 'zustand/middleware';
-
+import { clearBasket } from '../../../services/basketUser';
 import { infoBasketProductInfo } from '../../../lib/info-basket-product';
 import { IInitialState, IUseProductBasketClientState } from './BasketClientType';
 import {
@@ -59,7 +59,23 @@ const ProductBasketClientStore: StateCreator<IUseProductBasketClientState> = (se
             set({ error: true, loading: false });
         }
     },
+    removeBasketProducts: async () => {
+        try {
+            set({ loading: true, error: false });
 
+            await clearBasket();
+
+            set({
+                items: [],
+                totalCost: 0,
+                productCount: 0,
+                loading: false,
+            });
+        } catch (error) {
+            console.error(error);
+            set({ error: true, loading: false });
+        }
+    },
     removeCartItem: async (productId) => {
         try {
             set({ loading: true, error: false });

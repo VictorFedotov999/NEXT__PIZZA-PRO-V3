@@ -5,6 +5,7 @@ export interface IActions {
     fetchCartItems: () => void;
     addCartItem: (value: { productItemId: number; quantity: number }) => void;
     removeCartItem: (productId: number) => void;
+    removeBasketProducts: () => void;
     increaseCartItem: (productId: number, count: number) => void;
 }
 

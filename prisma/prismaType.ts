@@ -2,9 +2,9 @@ import { Prisma } from '@prisma/client';
 
 export type ProductIdType = Prisma.ProductGetPayload<{
     include: {
-        sizeOptions: true;
-        typeOptions: true;
-        ingredients: true;
+        typeOptions: {};
+        sizeOptions: {};
+        ingredients: {};
     };
 }>;
 

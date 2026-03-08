@@ -11,8 +11,10 @@ export const Header = () => {
                     <div className='header__inner '>
                         <HeaderLogo />
                         <HeaderInput />
-                        <ProfileBtn />
-                        <BasketBtn />
+                        <div className='header__btns'>
+                            <ProfileBtn />
+                            <BasketBtn />
+                        </div>
                     </div>
                 </div>
             </header>

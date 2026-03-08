@@ -2,9 +2,11 @@ import Link from 'next/link';
 import { ProductBtnAdd } from './ProductBtnAdd/ProductBtnAdd';
 
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
+import { ProductIdType } from '../../../prisma/prismaType';
 
 interface IProps {
-    product: any;
+    product: ProductIdType;
 }
 
 export const ProductItem = ({ product }: IProps) => {

@@ -1,15 +1,29 @@
+html {
+    overflow-y: scroll;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .body {
     line-height: 100%;
     font-size: 16px;
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
     color: black;
-    background-color: #f4f1ee58;
-}
-
-button {
-    border: none;
-    background-color: transparent;
 }
 
 .container {
@@ -22,107 +36,14 @@ button {
     display: none;
 }
 
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-.filter__type-text,
-.filter__ingredients-items input[type='checkbox'] {
-    @include checkbox-styles;
-}
-
-.filter__type-item,
-.filter__ingredients-item {
-    position: relative;
-    cursor: pointer;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    user-select: none;
+.link {
     display: block;
-
-    label {
-        @include checkbox-label;
-
-        &::before {
-            @include checkbox-before;
-        }
-
-        &::after {
-            @include checkbox-after;
-        }
-    }
-
-    &:hover label::before {
-        border-color: $--orange-color;
-        box-shadow: 0 0 0 3px rgba(254, 95, 0, 0.1);
-    }
-
-    input:checked + label {
-        color: $--orange-color;
-        font-weight: 500;
-
-        &::before {
-            background-color: $--orange-color;
-            border-color: $--orange-color;
-            animation: checkAnim 0.4s ease;
-        }
-
-        &::after {
-            opacity: 1;
-            transform: translateY(-60%) rotate(45deg);
-        }
-    }
-
-    input:focus + label::before {
-        box-shadow: 0 0 0 3px rgba(254, 95, 0, 0.3);
-        border-color: $--orange-color;
-    }
-}
-
-.filter__type-items,
-.filter__ingredients-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.filter__ingredients {
-    margin-top: 20px;
-
-    &-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #333;
-    }
-}
-
-.filter__all {
-    background: none;
-    border: none;
-    color: $--orange-color;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 5px 0;
-    margin-top: 10px;
-    transition: color 0.3s ease;
-
-    &:hover {
-        color: #ff7b33;
-        text-decoration: underline;
-    }
-}
-
-@keyframes checkAnim {
-    0% {
-        transform: translateY(-50%) scale(1);
-    }
-    50% {
-        transform: translateY(-50%) scale(1.1);
-    }
-    100% {
-        transform: translateY(-50%) scale(1);
-    }
+    text-decoration: none;
+    color: inherit;
 }

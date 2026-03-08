@@ -15,7 +15,8 @@ interface IProps {
 
 export const Basket = ({ openBasket, onClickBasket }: IProps) => {
     const basketProducts = useStoreItems();
-    console.log('basketProducts', basketProducts);
+    console.log(basketProducts, 'basketProduct');
+
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const limitProduct = 12;
     const basketProduct = Array(limitProduct).fill(0);
@@ -35,6 +36,7 @@ export const Basket = ({ openBasket, onClickBasket }: IProps) => {
             </section>
         );
     }
+
     return (
         <>
             <section className={openBasket === true ? 'basket active' : 'basket'}>

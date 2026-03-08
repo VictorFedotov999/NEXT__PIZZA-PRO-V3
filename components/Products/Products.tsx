@@ -6,6 +6,8 @@ import { Api } from '../../services/api-client';
 import { useSearchParams } from 'next/navigation';
 import { ProductSkeleton } from '../Skeletons/ProductSkeleton';
 import { ProductIdType } from '../../prisma/prismaType';
+import Image from 'next/image';
+import NotProductImg from '../../public/not-find/Not-Product.png';
 
 export const Products = () => {
     const searchParams = useSearchParams();
@@ -15,11 +17,13 @@ export const Products = () => {
     const size = searchParams.get('size') || '';
     const type = searchParams.get('type') || '';
 
+    console.log('category', category);
+
     const limitProduct = 12;
     const skeletonProduct = Array(limitProduct).fill(0);
 
     const [products, setProducts] = React.useState<ProductIdType[]>([]);
-    console.log('products:', products);
+    console.log('products', products);
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
     React.useEffect(() => {
@@ -44,14 +48,32 @@ export const Products = () => {
     }
 
     if (products.length === 0) {
-        return 'Ничего не найдено';
+        return (
+            <>
+                <div className='not__product'>
+                    <Image
+                        className='
+                    not__product-img'
+                        src={NotProductImg}
+                        width={400}
+                        height={400}
+                        alt='Not-Product'
+                    />
+                    <h1 className='not__product-text'> Не найдено</h1>
+                </div>
+            </>
+        );
     }
 
     return (
-        <div className='items '>
-            {products.map((product) => (
-                <ItemProduct key={product.id} product={product} />
-            ))}
-        </div>
+        <>
+            <div className='items'>
+                <div className='items '>
+                    {products.map((product) => (
+                        <ItemProduct key={product.id} product={product} />
+                    ))}
+                </div>
+            </div>
+        </>
     );
 };

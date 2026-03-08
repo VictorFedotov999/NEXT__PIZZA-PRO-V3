@@ -1,0 +1,213 @@
+.filter {
+    @include flex-column;
+    width: 244px;
+
+    &__title-type {
+        font-size: 22px;
+        font-weight: 700;
+        padding-bottom: 30px;
+    }
+    &__title {
+        font-size: 16px;
+        font-weight: 700;
+        padding-bottom: 15px;
+    }
+
+    &__type,
+    &__prices {
+        padding-bottom: 25px;
+    }
+
+    &__prices-title {
+        margin-bottom: 15px;
+    }
+
+    &__price-box {
+        width: 90px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #f6f6f6;
+        padding-left: 10px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__ingredients-title {
+        font-weight: 700;
+    }
+
+    &__all {
+        font-size: 17px;
+        font-weight: 600;
+        color: $--orange-color;
+        @include flex-center;
+    }
+
+    &__btn {
+        @include button-orange;
+        width: 100%;
+        height: 50px;
+        border-radius: 18px;
+        font-size: 16px;
+    }
+}
+.filter {
+    &__type + .filter__type {
+        padding-top: 25px;
+    }
+
+    &__type {
+        &--scroll {
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 10px;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $--orange-color;
+                border-radius: 10px;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background: darken($--orange-color, 10%);
+            }
+        }
+    }
+
+    &__type-items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__all {
+        font-size: 16px;
+        color: $--orange-color;
+        @include flex-center;
+
+        border: none;
+        cursor: pointer;
+        padding: 10px 0;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.filter__type-text,
+.filter__ingredients-items input[type='checkbox'] {
+    @include checkbox-styles;
+}
+
+.filter__type-item,
+.filter__ingredients-item {
+    position: relative;
+    cursor: pointer;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    user-select: none;
+    display: block;
+
+    label {
+        @include checkbox-label;
+
+        &::before {
+            @include checkbox-before;
+        }
+
+        &::after {
+            @include checkbox-after;
+        }
+    }
+
+    &:hover label::before {
+        border-color: $--orange-color;
+        box-shadow: 0 0 0 3px rgba(254, 95, 0, 0.1);
+    }
+
+    input:checked + label {
+        color: $--orange-color;
+        font-weight: 500;
+
+        &::before {
+            background-color: $--orange-color;
+            border-color: $--orange-color;
+            animation: checkAnim 0.4s ease;
+        }
+
+        &::after {
+            opacity: 1;
+            transform: translateY(-60%) rotate(45deg);
+        }
+    }
+
+    input:focus + label::before {
+        box-shadow: 0 0 0 3px rgba(254, 95, 0, 0.3);
+        border-color: $--orange-color;
+    }
+}
+
+.filter__type-items,
+.filter__ingredients-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter__ingredients {
+    margin-top: 20px;
+
+    &-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #333;
+    }
+}
+
+.filter__all {
+    background: none;
+    border: none;
+    color: $--orange-color;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 0;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #ff7b33;
+        text-decoration: underline;
+    }
+}
+
+.filter__type-item {
+    padding-bottom: 10px !important;
+    margin-bottom: 0px;
+}
+
+.filter__type-item-skeleton + .filter__type-item-skeleton {
+    padding-top: 12px;
+}
+@keyframes checkAnim {
+    0% {
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.1);
+    }
+    100% {
+        transform: translateY(-50%) scale(1);
+    }
+}

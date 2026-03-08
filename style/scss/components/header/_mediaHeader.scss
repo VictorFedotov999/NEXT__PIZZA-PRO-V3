@@ -1,0 +1,32 @@
+@media (max-width: 1350px) {
+    .header__logo-text {
+        width: 150px;
+    }
+}
+
+@media (max-width: 1270px) {
+    .header__input,
+    .header__popup {
+        width: 500px !important;
+    }
+}
+
+@media (max-width: 1120px) {
+    .header__input,
+    .header__popup {
+        width: 350px !important;
+    }
+}
+
+@media (max-width: 975px) {
+    .header__search {
+        display: none;
+    }
+    .header__logo {
+        align-items: center;
+    }
+
+    .header__logo-text {
+        display: none;
+    }
+}

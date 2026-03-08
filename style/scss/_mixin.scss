@@ -40,6 +40,11 @@
                 transition: all 0.4s;
             }
         }
+
+        .EmptyBtnSvg path {
+            stroke: $--orange-color;
+            transition: all 0.4s;
+        }
     }
 }
 

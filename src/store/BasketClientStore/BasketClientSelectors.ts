@@ -14,5 +14,7 @@ export const useFetchCartItems = () => useProductBasketClientStore.getState().fe
 export const useAddCartItem = (value: { productItemId: number; quantity: number }) =>
     useProductBasketClientStore.getState().addCartItem(value);
 
-export const useRemoveCartItem = (value: { productItemId: number }) =>
-    useProductBasketClientStore.getState().removeCartItem(value);
+export const useRemoveCartItem = (productId: number) =>
+    useProductBasketClientStore.getState().removeCartItem(productId);
+
+export const useClearBasket = () => useProductBasketClientStore.getState().removeBasketProducts();

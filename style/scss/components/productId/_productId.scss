@@ -1,0 +1,140 @@
+.product {
+    &__inner {
+        margin-top: 110px;
+        display: flex;
+        gap: 45px;
+    }
+
+    &__img-product {
+        width: 570px;
+        height: 570px;
+        transition: transform 0.4s ease;
+        will-change: transform;
+    }
+
+    &:hover &__img-product {
+        transform: translateY(10px);
+    }
+
+    &__info {
+        &-title {
+            color: #373737;
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        &-text {
+            font-size: 14px;
+            color: #373737;
+            margin-bottom: 25px;
+        }
+
+        &-sizes,
+        &-types {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 350px;
+            margin-bottom: 20px;
+
+            background-color: #fafafa;
+            border-radius: 30px;
+            padding: 4px;
+        }
+
+        &-sizes-text,
+        &-type-text {
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+
+            &.active {
+                background-color: #fff;
+                box-shadow: 0px 3px 5px rgb(197, 195, 195, 0.5);
+                border-radius: 30px;
+            }
+        }
+
+        &-sizes-text {
+            padding: 10px 36px;
+        }
+
+        &-type-text {
+            padding: 10px 62px;
+        }
+
+        &-igredients-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        &-items {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 456px;
+            gap: 20px;
+            background-color: #fafafa;
+            border-radius: 15px;
+
+            max-height: 230px;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #ff6900;
+                border-radius: 10px;
+            }
+        }
+
+        &-item {
+            width: 130px;
+            height: 193px;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 3px 5px rgb(197, 195, 195, 0.5);
+            border: 1px solid transparent;
+            &:hover,
+            &.active {
+                border: 1px solid $--orange-color;
+                transition: all 0.4s;
+                border-radius: 15px;
+            }
+        }
+
+        &-igredient {
+            &-img {
+                width: 110px;
+                height: 110px;
+            }
+
+            &-title {
+                font-size: 12px;
+                font-weight: 400;
+                width: 100px;
+                height: 32px;
+                text-align: center;
+                max-width: 105px;
+                max-height: 32px;
+            }
+        }
+    }
+
+    &__btn {
+        width: 297px;
+        height: 55px;
+        @include button-orange;
+        border-radius: 15px;
+        font-size: 16px;
+        margin-top: 60px;
+    }
+}
