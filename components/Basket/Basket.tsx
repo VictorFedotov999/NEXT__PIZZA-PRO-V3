@@ -15,16 +15,9 @@ interface IProps {
 
 export const Basket = ({ openBasket, onClickBasket }: IProps) => {
     const basketProducts = useStoreItems();
-    console.log(basketProducts, 'basketProduct');
-
-    const [isLoading, setIsLoading] = React.useState<boolean>(true);
-    const limitProduct = 12;
-    const basketProduct = Array(limitProduct).fill(0);
 
     React.useEffect(() => {
-        setIsLoading(true);
         useFetchCartItems();
-        setIsLoading(false);
     }, [useFetchCartItems]);
 
     if (basketProducts.length === 0) {

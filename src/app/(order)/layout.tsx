@@ -1,12 +1,5 @@
 import '../../../style/scss/style.scss';
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
-import { Header } from '../../../components/Header/Header';
-
-const nunito = Nunito({
-    variable: '--font-Nunito',
-    subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
     title: 'Главная | PIZZA PRO',
@@ -19,8 +12,8 @@ export default function OrderLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en'>
-            <body className='body'>{children}</body>
-        </html>
+        <>
+            <div className='body'>{children}</div>
+        </>
     );
 }

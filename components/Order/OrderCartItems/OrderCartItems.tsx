@@ -4,7 +4,7 @@ import { useFetchCartItems, useStoreItems } from '@/store/BasketClientStore/Bask
 import { OrderCartItem } from './OrderCartItem/OrderCartItem';
 import { IBasketItemsStore } from '@/store/BasketClientStore/BasketClientType';
 import React from 'react';
-import { OrderItemSkeleton } from '../../Skeletons/OrderItemSkeleton';
+import { OrderItemSkeleton } from '../../../Shared/Skeletons/OrderItemSkeleton';
 
 export const OrderCartItems = () => {
     const basketProducts = useStoreItems();

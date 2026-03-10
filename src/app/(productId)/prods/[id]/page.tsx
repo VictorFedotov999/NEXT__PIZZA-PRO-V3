@@ -1,11 +1,11 @@
 import { prisma } from '../../../../../prisma/prisma-client';
 import { ProductInfo } from '../../../../../components/ProductPage/ProductInfo/ProductInfo';
-type PropsType = {
+interface IProps {
     params: Promise<{
         id: string;
     }>;
-};
-const ProductPage = async ({ params }: PropsType) => {
+}
+const ProductPage = async ({ params }: IProps) => {
     const { id } = await params;
     const numericId = Number(id);
 

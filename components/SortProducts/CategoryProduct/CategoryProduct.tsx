@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { CategorySkeleton } from '../../Skeletons/CategorySkeleton';
+import { CategorySkeleton } from '../../../Shared/Skeletons/CategorySkeleton';
 import { getCategorys } from '../../../services/categorys';
 import { Category } from '@prisma/client';
 

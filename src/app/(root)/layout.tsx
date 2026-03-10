@@ -1,6 +1,5 @@
 import '../../../style/scss/style.scss';
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
 import { Header } from '../../../components/Header/Header';
 
 export const metadata: Metadata = {
@@ -14,11 +13,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='en'>
-            <body className='body'>
+        <>
+            <div className='body'>
                 <Header />
-                <main className='main'>{children}</main>
-            </body>
-        </html>
+                <div className='main'>{children}</div>
+            </div>
+        </>
     );
 }

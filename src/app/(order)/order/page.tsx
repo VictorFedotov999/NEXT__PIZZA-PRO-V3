@@ -5,6 +5,7 @@ import { PayOrder } from '../../../../components/Order/PayOrder/PayOrder';
 import Image from 'next/image';
 import BackPageIcon from '../../../../public/basket/Black-arrow-left.png';
 import Link from 'next/link';
+import { FormCart } from '../../../../components/Order/FormCart/FormCart';
 const PageOrder = () => {
     return (
         <>
@@ -18,8 +19,7 @@ const PageOrder = () => {
                             </Link>
 
                             <OrderCart />
-                            <PersonalInfoCart />
-                            <DeliveryCart />
+                            <FormCart />
                         </div>
 
                         <PayOrder />

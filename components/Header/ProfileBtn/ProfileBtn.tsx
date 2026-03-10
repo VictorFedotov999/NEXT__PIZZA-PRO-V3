@@ -5,10 +5,12 @@ import Image from 'next/image';
 import { useClickAway } from 'react-use';
 import ProfileIcon from '../../../public/header/headerBtnProfile.svg';
 import { ProfileBtnSvg } from './ProfileBtnSvg';
+import { useSession } from 'next-auth/react';
 
 export const ProfileBtn = () => {
     const settings = ['Настройки', 'Заказы', 'Выйти'];
     const [openPopup, setOpenPopup] = React.useState<boolean>(false);
+    const { data: session } = useSession();
     const [setting, setSetting] = React.useState<number>(0);
 
     const onClickOpenPopup = () => {
@@ -26,31 +28,38 @@ export const ProfileBtn = () => {
     });
     return (
         <>
-            <div className='header__profile' ref={ref}>
-                <button className='header__profile-btn' onClick={onClickOpenPopup}>
-                    <ProfileBtnSvg />
-                    <p className='header__profile-text'>Профиль</p>
-                </button>
+            {!session ? (
+                ''
+            ) : (
+                <>
+                    <div className='header__profile' ref={ref}>
+                        <button className='header__profile-btn' onClick={onClickOpenPopup}>
+                            <ProfileBtnSvg />
+                            <p className='header__profile-text'>Профиль</p>
+                        </button>
 
-                <div
-                    className={openPopup ? 'header__profile_popup active' : 'header__profile_popup'}
-                >
-                    {settings.map((set, index) => (
-                        <h3
-                            key={index}
-                            onClick={() => onClickSetting(index)}
+                        <div
                             className={
-                                setting === index
-                                    ? 'header__profile_popup-text active'
-                                    : 'header__profile_popup-text'
+                                openPopup ? 'header__profile_popup active' : 'header__profile_popup'
                             }
                         >
-                            {set}
-                        </h3>
-                    ))}
-                </div>
-            </div>
-            {/* <AuthorizationBtn /> */}
+                            {settings.map((set, index) => (
+                                <h3
+                                    key={index}
+                                    onClick={() => onClickSetting(index)}
+                                    className={
+                                        setting === index
+                                            ? 'header__profile_popup-text active'
+                                            : 'header__profile_popup-text'
+                                    }
+                                >
+                                    {set}
+                                </h3>
+                            ))}
+                        </div>
+                    </div>
+                </>
+            )}
         </>
     );
 };

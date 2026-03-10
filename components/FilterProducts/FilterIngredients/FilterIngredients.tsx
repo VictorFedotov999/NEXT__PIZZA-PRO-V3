@@ -5,8 +5,8 @@ import { FilterIngredientItem } from '../FilterIngredientItem/FilterIngredientIt
 import { getIngredients } from '../../../services/productInfo';
 import { Ingredient } from '@prisma/client';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { filtersSkeleton } from '../../../lib/filters-Skeleton';
-import { activeCheckbox } from '../../../lib/active-Checkbox';
+import { activeCheckbox } from '../../../Shared/lib/active-checkbox';
+import { filtersSkeleton } from '../../../Shared/lib/filters-skeleton';
 
 export const FilterIngredients = () => {
     const router = useRouter();

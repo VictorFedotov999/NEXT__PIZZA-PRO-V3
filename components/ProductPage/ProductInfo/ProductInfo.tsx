@@ -36,8 +36,6 @@ export const ProductInfo = ({ product, sizeOptions, typeOptions }: IProductInfo)
     console.log('ingredients', ingredients);
     console.log('selectedIngredientsId', selectedIngredientsId);
 
-    const IngredientInfo = (ingredients) => {};
-
     const onAddProductToBasket = () => {
         const newProduct = {
             basketId: 1,
@@ -53,7 +51,7 @@ export const ProductInfo = ({ product, sizeOptions, typeOptions }: IProductInfo)
         <>
             <ItemImg product={product} />
 
-            <div className='product__info' onClick={IngredientInfo}>
+            <div className='product__info'>
                 <ItemTitle product={product} />
 
                 {product.typeOptions.length > 1 ||

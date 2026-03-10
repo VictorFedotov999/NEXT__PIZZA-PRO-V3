@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import BasketIcon from '../../../public/header/headerBtnBasket.svg';
 import {
     useStoreProductCount,
     useStoreTotalCost,

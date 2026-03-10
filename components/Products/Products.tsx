@@ -4,7 +4,7 @@ import React from 'react';
 import { ProductItem as ItemProduct } from './Product/Product';
 import { Api } from '../../services/api-client';
 import { useSearchParams } from 'next/navigation';
-import { ProductSkeleton } from '../Skeletons/ProductSkeleton';
+import { ProductSkeleton } from '../../Shared/Skeletons/ProductSkeleton';
 import { ProductIdType } from '../../prisma/prismaType';
 import Image from 'next/image';
 import NotProductImg from '../../public/not-find/Not-Product.png';

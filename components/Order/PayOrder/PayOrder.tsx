@@ -1,9 +1,11 @@
 'use client';
 
 import { useStoreTotalCost } from '@/store/BasketClientStore/BasketClientSelectors';
+import { SubmitHandler } from 'react-hook-form';
 
 export const PayOrder = () => {
     const priceOrder = useStoreTotalCost();
+
     return (
         <>
             <div className='order__result'>

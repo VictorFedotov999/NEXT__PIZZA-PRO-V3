@@ -5,8 +5,8 @@ import { TypeOption } from '@prisma/client';
 import { FilterTypeItem } from '../FilterTypeItem/FilterTypeItem';
 import { getTypes } from '../../../services/productInfo';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { filtersSkeleton } from '../../../lib/filters-Skeleton';
-import { activeCheckbox } from '../../../lib/active-Checkbox';
+import { filtersSkeleton } from '../../../Shared/lib/filters-skeleton';
+import { activeCheckbox } from '../../../Shared/lib/active-checkbox';
 
 export const FilterType = () => {
     const router = useRouter();

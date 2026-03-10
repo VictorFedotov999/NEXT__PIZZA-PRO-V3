@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { clearBasket } from '../../../services/basketUser';
-import { infoBasketProductInfo } from '../../../lib/info-basket-product';
+
 import { IInitialState, IUseProductBasketClientState } from './BasketClientType';
 import {
     addProductItem,
@@ -9,7 +9,7 @@ import {
     increaseProductCount,
     removeProductItem,
 } from '../../../services/basketUser';
-import { sum } from 'lodash';
+import { infoBasketProductInfo } from '../../../Shared/lib/info-basket-product';
 
 const initialState: IInitialState = {
     items: [],

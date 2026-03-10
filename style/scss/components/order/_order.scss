@@ -49,11 +49,18 @@
 
         &-title {
             margin-bottom: 5px;
+            max-width: 210px;
         }
 
         &-text {
             font-size: 14px;
             color: #b1b1b1;
+            max-width: 218px;
+        }
+
+        &-price {
+            max-width: 100px;
+            padding: 5px;
         }
     }
 
@@ -212,4 +219,13 @@
         opacity: 1;
         transition: 0.2s;
     }
+}
+
+.form-error {
+    color: red;
+    width: 300px;
+}
+
+.item__count {
+    max-width: 200px;
 }

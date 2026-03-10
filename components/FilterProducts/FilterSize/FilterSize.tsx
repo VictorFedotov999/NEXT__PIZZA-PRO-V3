@@ -5,8 +5,8 @@ import { FilterSizeItem } from '../FilterSizeItem/FilterSizeItem';
 import { SizeOption } from '@prisma/client';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { getSizes } from '../../../services/productInfo';
-import { filtersSkeleton } from '../../../lib/filters-Skeleton';
-import { activeCheckbox } from '../../../lib/active-Checkbox';
+import { activeCheckbox } from '../../../Shared/lib/active-checkbox';
+import { filtersSkeleton } from '../../../Shared/lib/filters-skeleton';
 
 export const FilterSize = () => {
     const router = useRouter();

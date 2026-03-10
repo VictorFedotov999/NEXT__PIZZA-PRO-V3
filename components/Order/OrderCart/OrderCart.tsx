@@ -1,4 +1,4 @@
-import { Title } from '../../Shared/Title/Title';
+import { Title } from '../../../Shared/title-cart';
 import { ClearBasketBtn } from '../ClearBasketBtn/ClearBasketBtn';
 
 import { OrderCartItems } from '../OrderCartItems/OrderCartItems';
