@@ -1,7 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { prisma } from '../../../../prisma/prisma-client';
 
 export async function GET() {
-    const sorts = await prisma.sorting.findMany();
-    return NextResponse.json(sorts);
+    try {
+        const sorts = await prisma.sorting.findMany();
+        return NextResponse.json(sorts);
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }

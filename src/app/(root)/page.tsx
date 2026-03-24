@@ -1,6 +1,6 @@
-import { Products } from '../../../components/Products/Products';
-import { FilterProducts } from '../../../components/FilterProducts/FilterProducts';
-import { SortProducts } from '../../../components/SortProducts/SortProduct';
+import { Products } from '../../../Shared/components/Products/Products';
+import { FilterProducts } from '../../../Shared/components/FilterProducts/FilterProducts';
+import { SortProducts } from '../../../Shared/components/SortProducts/SortProduct';
 
 export default function Home() {
     return (
@@ -9,7 +9,7 @@ export default function Home() {
 
             <section className='products'>
                 <div className='container'>
-                    <div className='products__inner  '>
+                    <div className='products__inner'>
                         <FilterProducts />
                         <Products />
                     </div>

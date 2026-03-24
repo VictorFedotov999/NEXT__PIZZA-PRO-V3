@@ -1,5 +1,7 @@
 import { prisma } from '../../../../../prisma/prisma-client';
-import { ProductInfo } from '../../../../../components/ProductPage/ProductInfo/ProductInfo';
+import { BackBtn } from '../../../../../Shared/components/Order/BackBtn/BackBtn';
+import { ProductInfo } from '../../../../../Shared/components/ProductPage/ProductInfo/ProductInfo';
+
 interface IProps {
     params: Promise<{
         id: string;
@@ -25,6 +27,7 @@ const ProductPage = async ({ params }: IProps) => {
         <section className='product'>
             <div className='container'>
                 <div className='product__inner'>
+                    <BackBtn />
                     {products.map((product) => (
                         <ProductInfo
                             key={product.id}

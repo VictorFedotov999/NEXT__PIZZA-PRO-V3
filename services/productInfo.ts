@@ -7,16 +7,28 @@ import {
 } from './instance';
 
 export const getTypes = async () => {
-    const { data } = await axionsInstatce.get<TypeOption[]>(API_PRODUCT_TYPES);
-    return data;
+    try {
+        const { data } = await axionsInstatce.get<TypeOption[]>(API_PRODUCT_TYPES);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 };
 
 export const getSizes = async () => {
-    const { data } = await axionsInstatce.get<SizeOption[]>(API_PRODUCT_SIZES);
-    return data;
+    try {
+        const { data } = await axionsInstatce.get<SizeOption[]>(API_PRODUCT_SIZES);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 };
 
 export const getIngredients = async () => {
-    const { data } = await axionsInstatce.get<Ingredient[]>(API_PRODUCT_INGREDIENTS);
-    return data;
+    try {
+        const { data } = await axionsInstatce.get<Ingredient[]>(API_PRODUCT_INGREDIENTS);
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 };

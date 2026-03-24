@@ -1,0 +1,67 @@
+.popup-overlay__register {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100000;
+}
+
+.popup__register {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 700px;
+    height: 575px;
+    box-shadow: 0px 3px 5px rgb(197, 195, 195, 0.5);
+    border-radius: 20px;
+}
+
+.register {
+    &__title {
+        text-align: center;
+        font-size: 25px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+
+        &-input {
+            width: 380px;
+            height: 38px;
+            border-radius: 15px;
+            padding-left: 15px;
+            border: 1px solid #fff;
+            box-shadow: 0px 3px 5px rgb(197, 195, 195, 0.5);
+            outline: 0;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        &-btn {
+            width: 220px;
+            height: 40px;
+            border-radius: 20px;
+            box-shadow: 0px 3px 5px rgb(197, 195, 195, 0.5);
+            cursor: pointer;
+            border: 1px solid $--orange-color;
+            color: $--orange-color;
+            font-size: 18px;
+            margin-top: 10px;
+
+            &:hover {
+                background-color: $--orange-color;
+                color: #fff;
+                transition: all 0.4s;
+            }
+        }
+    }
+}

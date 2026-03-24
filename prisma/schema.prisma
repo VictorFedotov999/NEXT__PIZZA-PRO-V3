@@ -12,16 +12,55 @@ enum UserRole {
     USER
 }
 
+enum OrderStatus {
+    PENDING
+    SUCCEEDED
+    CANCELLED
+}
+
 model User {
     id Int @id @default(autoincrement())
 
-    surname    String
-    name       String
+    surname    String?
+    name       String?
     patronymic String?
 
-    role UserRole
+    email    String?
+    password String?
+
+    provider   String?
+    providerId String?
+    role       UserRole
 
     UserBasket UserBasket?
+
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
+    userOrders UserOrder[]
+}
+
+model UserOrder {
+    id Int @id @default(autoincrement())
+
+    userId Int?
+    user   User? @relation(fields: [userId], references: [id])
+
+    paymentId Int
+
+    surname     String
+    name        String
+    patronymic  String
+    email       String
+    phone       String
+    address     String
+    comment     String?
+    status      OrderStatus
+    totalAmount Int
+
+    userOrderProducts UserBasketProduct[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model UserBasket {
@@ -34,6 +73,9 @@ model UserBasket {
     user   User @relation(fields: [userId], references: [id])
 
     userBasketProducts UserBasketProduct[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model UserBasketProduct {
@@ -51,9 +93,15 @@ model UserBasketProduct {
     typeOptionId Int?
     typeOption   TypeOption? @relation(fields: [typeOptionId], references: [id])
 
+    userOrderId Int?
+    userOrder   UserOrder? @relation(fields: [userOrderId], references: [id])
+
     ingredients Ingredient[]
 
     quantity Int @default(1)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Category {
@@ -62,6 +110,9 @@ model Category {
     title String @unique
 
     products Product[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Product {
@@ -82,6 +133,9 @@ model Product {
     ingredients Ingredient[]
 
     userBasketProducts UserBasketProduct[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Ingredient {
@@ -94,6 +148,9 @@ model Ingredient {
     products Product[]
 
     userBasketProduct UserBasketProduct[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model SizeOption {
@@ -104,6 +161,9 @@ model SizeOption {
 
     products           Product[]
     userBasketProducts UserBasketProduct[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model TypeOption {
@@ -114,20 +174,25 @@ model TypeOption {
 
     products           Product[]
     userBasketProducts UserBasketProduct[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Sorting {
     id Int @id @default(autoincrement())
 
     title String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
 model Filter {
     id Int @id @default(autoincrement())
 
     title String
-}
 
-model OrderUser {
-    id Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }

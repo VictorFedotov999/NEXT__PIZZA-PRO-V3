@@ -7,8 +7,12 @@ export const filteringProduct = async (
     size: string,
     type: string,
 ) => {
-    const { data } = await axionsInstatce.get(API_PRODUCTS, {
-        params: { category, sort, ingredients, size, type },
-    });
-    return data;
+    try {
+        const { data } = await axionsInstatce.get(API_PRODUCTS, {
+            params: { category, sort, ingredients, size, type },
+        });
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 };
