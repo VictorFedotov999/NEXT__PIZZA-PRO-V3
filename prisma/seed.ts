@@ -49,27 +49,6 @@ async function seed() {
             data: item,
         });
     }
-
-    await prisma.user.createMany({
-        data: [
-            {
-                surname: 'Федотов',
-                name: 'Виктор',
-                patronymic: 'Андреевич',
-                role: 'USER',
-            },
-        ],
-    });
-
-    await prisma.userBasket.createMany({
-        data: [
-            {
-                quantity: 1,
-                basketCost: 1,
-                userId: 1,
-            },
-        ],
-    });
 }
 
 seed();

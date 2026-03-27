@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authOptions } from '../auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
 
-// ================= GET =================
 export async function GET() {
     try {
         const session = await getServerSession(authOptions);
@@ -15,7 +14,6 @@ export async function GET() {
             where: { userId },
             include: {
                 userBasketProducts: {
-                    where: { userOrderId: null },
                     orderBy: { id: 'asc' },
                     include: {
                         product: true,
@@ -34,7 +32,6 @@ export async function GET() {
     }
 }
 
-// ================= POST =================
 export async function POST(req: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
@@ -55,7 +52,6 @@ export async function POST(req: NextRequest) {
                 productId: body.productId,
                 sizeOptionId: body.sizeOptionId,
                 typeOptionId: body.typeOptionId,
-                userOrderId: null,
             },
             include: { ingredients: true },
         });
@@ -130,13 +126,13 @@ export async function DELETE(req: NextRequest) {
 
         if (body.clear) {
             await prisma.userBasketProduct.deleteMany({
-                where: { basketId: userBasket.id, userOrderId: null },
+                where: { basketId: userBasket.id },
             });
             return NextResponse.json({ success: true });
         }
 
         await prisma.userBasketProduct.deleteMany({
-            where: { id: body.productId, basketId: userBasket.id, userOrderId: null },
+            where: { id: body.productId, basketId: userBasket.id },
         });
         return NextResponse.json({ success: true });
     } catch (error) {

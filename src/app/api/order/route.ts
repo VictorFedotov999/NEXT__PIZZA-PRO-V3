@@ -12,12 +12,10 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { name, surname, email, phone, address, comment } = body;
 
-        // Получаем корзину с продуктами и ингредиентами
         const basket = await prisma.userBasket.findUnique({
             where: { userId },
             include: {
                 userBasketProducts: {
-                    where: { userOrderId: null },
                     include: {
                         product: true,
                         sizeOption: true,
@@ -28,46 +26,44 @@ export async function POST(req: Request) {
             },
         });
 
-        if (!basket || basket.userBasketProducts.length === 0)
-            return NextResponse.json({ message: 'Корзина пустая' }, { status: 400 });
+        if (!basket || basket.userBasketProducts.length === 0) {
+            return NextResponse.json({ message: 'Корзина пуста' }, { status: 400 });
+        }
 
-        // Считаем totalAmount
-        const totalAmount = basket.userBasketProducts.reduce((sum, item) => {
-            const basePrice = item.product?.price ?? 0;
-            const sizePrice = item.sizeOption?.price ?? 0;
-            const typePrice = item.typeOption?.price ?? 0;
-            const ingredientsPrice = item.ingredients?.reduce((a, i) => a + i.price, 0) ?? 0;
-
-            return sum + (basePrice + sizePrice + typePrice + ingredientsPrice) * item.quantity;
-        }, 0);
-
-        // Создаём заказ
         const order = await prisma.userOrder.create({
             data: {
                 userId,
-                paymentId: 1,
                 name,
                 surname,
-                patronymic: '',
                 email,
                 phone,
                 address,
                 comment,
                 status: 'PENDING',
-                totalAmount,
             },
         });
 
-        // Привязываем товары к заказу
-        await prisma.userBasketProduct.updateMany({
-            where: { basketId: basket.id, userOrderId: null },
-            data: { userOrderId: order.id },
+        const orderProductsData = basket.userBasketProducts.map((item) => ({
+            userOrderId: order.id,
+            title: item.product?.title || '',
+            image: item.product?.image || '',
+            description: item.product?.description || '',
+            rating: item.product?.rating || 0,
+            price: item.product?.price || 0,
+            quantity: item.quantity,
+            sizeValue: item.sizeOption?.size || 0,
+            sizePrice: item.sizeOption?.price || 0,
+            typeValue: item.typeOption?.type || '',
+            typePrice: item.typeOption?.price || 0,
+            ingredients: item.ingredients.length > 0 ? JSON.stringify(item.ingredients) : null,
+        }));
+
+        await prisma.userOrderProduct.createMany({
+            data: orderProductsData,
         });
 
-        // Обнуляем корзину
-        await prisma.userBasket.update({
-            where: { id: basket.id },
-            data: { quantity: 0, basketCost: 0 },
+        await prisma.userBasketProduct.deleteMany({
+            where: { basketId: basket.id },
         });
 
         return NextResponse.json(order);

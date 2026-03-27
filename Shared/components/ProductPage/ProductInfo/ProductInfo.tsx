@@ -34,19 +34,13 @@ export const ProductInfo = ({ product, sizeOptions, typeOptions }: IProductInfo)
     const selectedSize = product.sizeOptions.map((size) => size.id);
     const selectedType = product.typeOptions.map((type) => type.id);
     const selectedIngredientsId = selectedIngredients.map((ingredients) => ingredients.id);
-    console.log(selectedIngredientsId);
 
     const onAddProductToBasket = async () => {
         if (!session) {
             toast.error('Вы не авторизованы');
             return;
         }
-        console.log({
-            productId: product.id,
-            sizeOptionId: selectedSize[sizeActive],
-            typeOptionId: selectedType[typeActive],
-            ingredients: selectedIngredientsId,
-        });
+
         try {
             const newProduct = {
                 basketId: session.id,

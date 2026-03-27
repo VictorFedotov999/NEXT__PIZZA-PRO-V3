@@ -16,24 +16,18 @@ const userOrdersPage = async () => {
 
     const userId = Number((session.user as any).id);
 
-    const orders = await prisma.userOrder.findMany({
-        where: { userId },
-        orderBy: { id: 'desc' },
-        include: {
-            userOrderProducts: {
-                include: {
-                    product: true,
-                    sizeOption: true,
-                    typeOption: true,
-                    ingredients: true,
-                },
-            },
-        },
-    });
+    // const orders = await prisma.userOrderProduct.findMany({
+    //     where: userId
+    //     include: {
+    //         userOrder: {
+
+    //         }
+    //     }
+    // });
 
     return (
         <div className='container'>
-            <h1>Мои заказы</h1>
+            {/* <h1>Мои заказы</h1>
             {orders.length === 0 ? (
                 <p>Заказов пока нет.</p>
             ) : (
@@ -60,7 +54,8 @@ const userOrdersPage = async () => {
                                         </div>
                                         <div>
                                             Ингредиенты:{' '}
-                                            {item.ingredients?.map((i) => i.title).join(', ') ?? '-'}
+                                            {item.ingredients?.map((i) => i.title).join(', ') ??
+                                                '-'}
                                         </div>
                                         <div>Количество: {item.quantity}</div>
                                     </div>
@@ -69,7 +64,7 @@ const userOrdersPage = async () => {
                         </div>
                     ))}
                 </div>
-            )}
+            )} */}
         </div>
     );
 };
