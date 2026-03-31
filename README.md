@@ -1,36 +1,54 @@
 
+# 🍕 NEXT__PIZZA-PRO
 
-# NEXT__PIZZA-PRO 🍕
+> 🚀 Современный full-stack интернет-магазин доставки еды  
+> ⚡ Next.js + Prisma + PostgreSQL  
 
+---
 
 ## 💥 О проекте
- **NEXT__PIZZA-PRO** — Интернет-магазин (сервис доставки) с корзиной, системой заказов и гибкой структурой товаров. Проект демонстрирует современный стек технологий для full-stack веб-приложений.
+ **NEXT__PIZZA-PRO** — это полноценный сервис доставки еды с современным интерфейсом и продуманной архитектурой.
+
+
+## 🧩 Функционал
+- Регистрация и авторизация  
+- Просмотр товаров  
+- Поиск  (debounce) 
+- Добавление в корзину 
+- Настройка товара  
+- Оформление заказа  
+- История заказов
+- Чистка корзины
+- Удаление товара
+- увеличение/уменьшение кол-во товара
+
+---
 
 
 ## 🛠 Полный стек технологий
 
-### Frontend:
+### 🎨 Frontend:
 
-- **Next.js 16** (App Router) – React-фреймворк с серверным рендерингом
-- **React 19** – пользовательские интерфейсы
-- **TypeScript** - строгая типизация
-- **SCSS** – стилизация
-- **Zustand** – управление состоянием корзины клиента
-- **React Hook Form** – работа с формами
-- **React Hot Toast** – уведомления
+- ⚛️ **Next.js 16** (App Router) – React-фреймворк с серверным рендерингом
+- ⚛️ **React 19** – пользовательские интерфейсы
+- 🟦 **TypeScript** - строгая типизация
+- 🎨 **SCSS** – стилизация
+- 🧠 **Zustand** – управление состоянием корзины клиента
+- 🧾 **React Hook Form** – работа с формами
+- 🔔 **React Hot Toast** – уведомления
 
 
-### Backend:
-- **Next.js API Routes** - бэкенд-эндпоинты
-- **Prisma ORM** - работа с базой данных
-- **PostgreSQL** -  основная база данных
-- **bcrypt** - хеширование паролей
-- **Axios** - HTTP-запросы
+### ⚙️ Backend:
+- 🔗 **Next.js API Routes** - backend внутри приложения
+- 🗄 **Prisma ORM** - работа с базой данных
+- 🐘 **PostgreSQL** -  база данных
+- 🔐 **bcrypt** - хеширование паролей
+- 🌐 **Axios** - HTTP-запросы
 
-### Авторизация:
-- **NextAuth (Credentials + GitHub)**
-
-## ~Схема БД:
+### 🔐 Авторизация:
+- 🔑 **NextAuth (Credentials(email + password) + GitHub)**
+---
+## 📸 Схема БД:
 ![img](public/imgGit/img1.png)
 ## ~PostgreSQL
 ```
@@ -243,32 +261,40 @@ model Sorting {
     updatedAt DateTime @updatedAt
 }
 ```
-
-## Вход в аккаунт
+## 🔐 Вход в аккаунт
 ![img](public/imgGit/img2.png)
-## Регистрация
+## 📝 Регистрация
 ![img](public/imgGit/img3.png)
-## Главная
+## 🏠 Главная
 ![img](public/imgGit/img4.png)
-## Корзина
+## 🛒 Корзина(пустая)
 ![img](public/imgGit/img5.png)
-## Заказы
+## 📦 Заказы(пусто)
 ![img](public/imgGit/img6.png)
-## БД User(пустая)
+## 📊 БД User(пустая)
 ![img](public/imgGit/img7.png)
-## БД корзина ползователя(пустая)
+## 📊 БД корзина ползователя(пустая)
 ![img](public/imgGit/img8.png)
-## Страница товара + добавление в корзину пользователя
+## 🍕 Страница товара + добавление в корзину пользователя
 ![img](public/imgGit/img9.png)
 ![img](public/imgGit/img10.png)
+
 ![img](public/imgGit/img11.png)
+## 📊  БД UserBasketProduct после добавления
 ![img](public/imgGit/img12.png)
+## 📦 Оформление заказа
+![img](public/imgGit/img19.png)
+## 📌 Форма персональных данных + форма адреса
 ![img](public/imgGit/img13.png)
 ![img](public/imgGit/img14.png)
+## 📜 Страница заказов пользователя после оформления
 ![img](public/imgGit/img15.png)
+## 📊  БД UserOrder после оформления
+![img](public/imgGit/img18.png)
+## 🔍 Поиск товаров 
 ![img](public/imgGit/img16.png)
 ![img](public/imgGit/img17.png)
-![img](public/imgGit/img18.png)
+
 ## 👨‍💻 Автор
 
-Виктор Федотов
+V.Fedotov
