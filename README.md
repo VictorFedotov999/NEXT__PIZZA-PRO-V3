@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# NEXT__PIZZA-PRO 🍕
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💥 О проекте
+ **NEXT__PIZZA-PRO** — Интернет-магазин (сервис доставки) с корзиной, системой заказов и гибкой структурой товаров. Проект демонстрирует современный стек технологий для full-stack веб-приложений.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Полный стек технологий
 
-## Learn More
+### Frontend:
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js 16** (App Router) – React-фреймворк с серверным рендерингом
+- **React 19** – пользовательские интерфейсы
+- **TypeScript** - строгая типизация
+- **SCSS** – стилизация
+- **Zustand** – управление состоянием корзины клиента
+- **React Hook Form** – работа с формами
+- **React Hot Toast** – уведомления
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Backend:
+- **Next.js API Routes** - бэкенд-эндпоинты
+- **Prisma ORM** - работа с базой данных
+- **PostgreSQL** -  основная база данных
+- **bcrypt** - хеширование паролей
+- **Axios** - HTTP-запросы
 
-## Deploy on Vercel
+### Авторизация:
+- **NextAuth (Credentials + GitHub)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👨‍💻 Автор
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Виктор Федотов
